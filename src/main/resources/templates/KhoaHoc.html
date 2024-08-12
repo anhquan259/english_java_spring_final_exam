@@ -80,12 +80,17 @@
                 <li class="nav-item active">
                   <a class="nav-link" th:href="@{/}"> Trang chủ <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item " th:if="${session.role == null || session.role == 1}">
                   <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
                 </li>
-
-                <li class="nav-item ">
+                <li class="nav-item " th:if="${session.role == 2}">
+                  <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == null || session.role == 1}">
                   <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == 2}">
+                  <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
                 </li>
 
                 <li class="nav-item">
@@ -124,7 +129,7 @@
 			
 				
 					
-				<h2 class="ntitle">Choose a grammar lesson</h2>
+				<h2 class="ntitle">Choose a grammar lesson<a th:if="${session.role == 2}" th:href="@{'/khoahoc/add'}">+</a></h2>
 				<!--Nội dung bài test -->
 				<div  class="nlistbaithi">
 						

@@ -1,33 +1,38 @@
 package WebThiTA.model;
 
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 @Entity
+@Table(name = "bai_thi")
+@Data
 public class BaiThi {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "exam_id")
+    @EqualsAndHashCode.Include
     private Long examId;
-	@Column(nullable = false)
+	@Column(nullable = false,name = "exam_name")
 	private String examName;
-	@Column(columnDefinition="varchar2(1000)")
+	@Column(columnDefinition="varchar(1000)")
     private String content;
 	
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonManagedReference
+    @ToString.Exclude
 	private Set<Diem> listDiem;
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonManagedReference
+    @ToString.Exclude
 	private Set<CauHoi> listQuestion;
 
     public BaiThi() {
@@ -75,6 +80,17 @@ public class BaiThi {
         this.listQuestion = listQuestion;
     }
 
-    
+    @Override
+    public int hashCode() {
+        return Objects.hash(examId);  // Sử dụng chỉ `examId` để tránh vòng lặp vô hạn
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaiThi baiThi = (BaiThi) o;
+        return Objects.equals(examId, baiThi.examId);  // Sử dụng chỉ `examId` để so sánh
+    }
 	
 }

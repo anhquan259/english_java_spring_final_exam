@@ -10,20 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import WebThiTA.dto.BaiThiDTO;
 import WebThiTA.model.BaiHoc;
-import WebThiTA.model.BaiThi;
-import WebThiTA.model.CauHoi;
 import WebThiTA.reponsitory.BaiHocRepo;
-import WebThiTA.reponsitory.BaiThiRepo;
-import WebThiTA.reponsitory.CauHoiRepo;
 
 @Controller
 @RequestMapping("")
@@ -56,7 +49,22 @@ public class HocController {
         return "BaiHoc";
         
     }
-    
-    
-    
+    @RequestMapping("/khoahoc/add")
+    public String baiHoc(Model model, HttpServletRequest request) {
+        //authen
+        HttpSession ss= request.getSession();
+        if(ss.getAttribute("username")==null)
+            return new String( "redirect:/login");
+        //lấy bai thi
+        List<BaiHoc> listBaiHoc= baiHocRepo.findAll();
+        model.addAttribute("baiHoc", new BaiHoc());
+        return "BaiHocAdd";
+    }
+
+    @PostMapping("/khoahoc/add-lesson")
+    public String addLesson(@ModelAttribute("baiHoc") BaiHoc baiHoc) {
+        // Lưu bài học vào cơ sở dữ liệu
+        baiHocRepo.save(baiHoc);
+        return "redirect:/khoahoc"; // Điều hướng sau khi thêm thành công
+    }
 }
