@@ -22,10 +22,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet" />
+    <!-- Custom taskbar for this template -->
+    <link href="/css/taskbar.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="/css/responsive.css" rel="stylesheet" />
     <link href="/css/Thi.css" rel="stylesheet" />
     <link href="/css/BaiHoc.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
 </head>
 
 <body class="sub_page">
@@ -50,16 +53,16 @@
                             <li class="nav-item active">
                                 <a class="nav-link" th:href="@{/}">Trang chủ <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item " th:if="${session.role == null || session.role == 1}">
+                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
                                 <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
                             </li>
-                            <li class="nav-item " th:if="${session.role == 2}">
+                            <li class="nav-item " th:if="${session.role == '2'}">
                                 <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
                             </li>
-                            <li class="nav-item " th:if="${session.role == null || session.role == 1}">
+                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
                                 <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
                             </li>
-                            <li class="nav-item " th:if="${session.role == 2}">
+                            <li class="nav-item " th:if="${session.role == '2'}">
                                 <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
                             </li>
                             <li class="nav-item">
@@ -71,7 +74,7 @@
 
                             <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
                                 <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
-                                <a class="nav-link" th:href="@{/profile}"><img class="avatar" src="images/avatar.jpg"></a>
+                                <a class="nav-link" th:href="@{/profile}"><img class="avatar" th:src="@{/images/avatar.jpg}"></a>
                             </li>
                             <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
                                 <a th:href="@{/login}" class="taskbar-btn">Đăng Nhập</a>

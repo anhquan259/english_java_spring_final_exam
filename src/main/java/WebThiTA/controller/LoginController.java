@@ -39,6 +39,7 @@ public class LoginController {
             if(i.getUsername().equals(email)&&i.getPassword().equals(password)) {
                 HttpSession ss= request.getSession();
                 ss.setAttribute("username", email);
+				ss.setAttribute("role",i.getRole()+"");
                 return new ModelAndView( "redirect:/", model);
             }
         }
