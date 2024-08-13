@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import WebThiTA.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,10 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import WebThiTA.dto.BaiThiDTO;
 import WebThiTA.dto.CauHoiDTO;
-import WebThiTA.model.BaiThi;
-import WebThiTA.model.CauHoi;
-import WebThiTA.model.Diem;
-import WebThiTA.model.User;
 import WebThiTA.reponsitory.BaiThiRepo;
 import WebThiTA.reponsitory.CauHoiRepo;
 import WebThiTA.reponsitory.DiemRepo;
@@ -142,6 +139,15 @@ public class ThiController {
         return "redirect:/listbaithi";
         
     }
-    
-    
+
+    @RequestMapping("/thi/add")
+    public String baiHoc(Model model, HttpServletRequest request) {
+        //authen
+        HttpSession ss= request.getSession();
+        if(ss.getAttribute("username")==null)
+            return new String( "redirect:/login");
+        //lấy bai thi
+        model.addAttribute("baiThi", new BaiThiDTO());
+        return "ThiNew";
+    }
 }

@@ -129,7 +129,7 @@
 			
 				
 					
-          <h2 class="ntitle">Choose your level to practise your reading <button th:href="@{'/thi/add'}">+</button></h2>
+          <h2 class="ntitle">Choose your level to practise your reading <a th:if="${session.role == '2'}" th:href="@{'/thi/add'}">+</a></h2>
 				<!--Nội dung bài test -->
 				<div  class="nlistbaithi">
 						
