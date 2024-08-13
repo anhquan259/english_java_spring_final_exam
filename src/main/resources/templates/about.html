@@ -61,15 +61,17 @@
                 <li class="nav-item active">
                   <a class="nav-link" th:href="@{/}"> Trang chủ <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
                   <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
                 </li>
-
-                <li class="nav-item ">
-                	<div class="dropdown">
-                		
-                	</div>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
                   <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
                 </li>
 
                 <li class="nav-item">
@@ -95,6 +97,7 @@
 
               </ul>
             </div>
+          </div>
         </nav>
       </div>
     </header>
@@ -138,7 +141,6 @@ Duy Đạt tự hào là đơn vị tiên phong trong việc đưa học sinh Vi
 
 
 
-  <section class="info_section layout_padding-top">
     <!-- end contact section -->
   <section class="info_section layout_padding-top">
     <div class="info_logo-box">

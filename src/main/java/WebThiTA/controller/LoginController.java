@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 import WebThiTA.model.User;
 import WebThiTA.reponsitory.UserRepo;
@@ -38,6 +39,7 @@ public class LoginController {
             if(i.getUsername().equals(email)&&i.getPassword().equals(password)) {
                 HttpSession ss= request.getSession();
                 ss.setAttribute("username", email);
+				ss.setAttribute("role",i.getRole()+"");
                 return new ModelAndView( "redirect:/", model);
             }
         }

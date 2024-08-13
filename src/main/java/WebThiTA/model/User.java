@@ -1,22 +1,23 @@
 package WebThiTA.model;
 
+import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 @Entity
 @Table(name="Accounts")
+@Data
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    @EqualsAndHashCode.Include
     private Long userId;
 	@Column(nullable = false)
 	private String Fullname;
@@ -29,8 +30,9 @@ public class User {
 	@Column(nullable = false)
 	private double diemTB;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonManagedReference
+    @ToString.Exclude
 	private Set<Diem> diem;
 
     public User() {
@@ -98,5 +100,8 @@ public class User {
     public void setDiem(Set<Diem> diem) {
         this.diem = diem;
     }
-	
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId); // Sử dụng một thuộc tính đơn lẻ như id thay vì các đối tượng khác có thể gây đệ quy.
+    }
 }

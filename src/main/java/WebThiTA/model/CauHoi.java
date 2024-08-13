@@ -6,11 +6,18 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
+@Table(name = "cau_hoi")
+@Data
 public class CauHoi {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "question_id")
+    @EqualsAndHashCode.Include
     private Long questionId;
 	@Column(nullable = false)
 	private String question;
@@ -26,9 +33,10 @@ public class CauHoi {
     private String correctanswer;
 
 	
-	@ManyToOne
-	@JoinColumn(name="examId", nullable = false, referencedColumnName = "examId")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="exam_id", nullable = false, referencedColumnName = "exam_id")
 	@JsonBackReference
+    @ToString.Exclude
 	private BaiThi exam;
 
     public CauHoi() {

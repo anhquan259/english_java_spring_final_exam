@@ -5,31 +5,37 @@ import java.sql.Clob;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
+@Table(name = "bai_hoc")
+@Data
 public class BaiHoc {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "lesson_id")
+    @EqualsAndHashCode.Include
     private Long lessonId;
 	@Column(nullable = false)
 	private String title;
-	@Column()
+	@Column(name = "video")
 	private String video;
 	@Column()
     private String title1;
-	@Column(columnDefinition="varchar2(1000)")
+	@Column(columnDefinition="varchar(1000)")
 	private String content1;
 	@Column()
     private String title2;
-	@Column(columnDefinition="varchar2(1000)")
+	@Column(columnDefinition="varchar(1000)")
     private String content2;
     @Column()
     private String title3;
-    @Column(columnDefinition="varchar2(1000)")
+    @Column(columnDefinition="varchar(1000)")
     private String content3;
     @Column()
     private String title4;
-    @Column(columnDefinition="varchar2(1000)")
+    @Column(columnDefinition="varchar(1000)")
     private String content4;
 	
 

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Thêm Bài Học</title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <!-- progress barstle -->
+    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <!-- Custom taskbar for this template -->
+    <link href="/css/taskbar.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet" />
+    <link href="/css/Thi.css" rel="stylesheet" />
+    <link href="/css/BaiHoc.css" rel="stylesheet" />
+
+
+
+
+    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
+
+
+
+    <script
+            src="/js/jquery-1.js"></script>
+    <script
+            src="/js/baiTestReading.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        });
+    </script>
+</head>
+
+<body class="sub_page">
+<div class="top_container">
+    <!-- header section strats -->
+    <header class="header_section">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <a class="navbar-brand" th:href="@{/}">
+            <span>
+              Duy Đạt
+            </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" th:href="@{/}">Trang chủ <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
+                                <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
+                            </li>
+                            <li class="nav-item " th:if="${session.role == '2'}">
+                                <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
+                            </li>
+                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
+                                <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
+                            </li>
+                            <li class="nav-item " th:if="${session.role == '2'}">
+                                <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/rank}">Bảng xếp hạng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/tratu}">Tra từ</a>
+                            </li>
+
+                            <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
+                                <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
+                                <a class="nav-link" th:href="@{/profile}"><img class="avatar" th:src="@{/images/avatar.jpg}"></a>
+                            </li>
+                            <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
+                                <a th:href="@{/login}" class="taskbar-btn">Đăng Nhập</a>
+                                <a th:href="@{/register}" class="taskbar-btn">Đăng Ký</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>
+<!-- end header section -->
+
+<div id="addLessonForm" class="container mt-5">
+    <h2 class="ntitle">Thêm Bài Học Mới</h2>
+    <form th:action="@{/khoahoc/add-lesson}" th:object="${baiHoc}" method="post">
+        <div class="form-group">
+            <label for="title">Tiêu Đề Bài Học</label>
+            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" placeholder="Nhập tiêu đề bài học" required>
+        </div>
+        <div class="form-group">
+            <label for="title1">Tiêu Đề Phần 1</label>
+            <input type="text" id="title1" name="title1" class="form-control" th:field="*{title1}" placeholder="Nhập tiêu đề phần 1" required>
+        </div>
+        <div class="form-group">
+            <label for="content1">Nội Dung Phần 1</label>
+            <textarea id="content1" name="content1" class="form-control" th:field="*{content1}" placeholder="Nhập nội dung phần 1" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="title2">Tiêu Đề Phần 2</label>
+            <input type="text" id="title2" name="title2" class="form-control" th:field="*{title2}" placeholder="Nhập tiêu đề phần 2" required>
+        </div>
+        <div class="form-group">
+            <label for="content2">Nội Dung Phần 2</label>
+            <textarea id="content2" name="content2" class="form-control" th:field="*{content2}" placeholder="Nhập nội dung phần 2" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="title3">Tiêu Đề Phần 3</label>
+            <input type="text" id="title3" name="title3" class="form-control" th:field="*{title3}" placeholder="Nhập tiêu đề phần 3" required>
+        </div>
+        <div class="form-group">
+            <label for="content3">Nội Dung Phần 3</label>
+            <textarea id="content3" name="content3" class="form-control" th:field="*{content3}" placeholder="Nhập nội dung phần 3" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="title4">Tiêu Đề Phần 4</label>
+            <input type="text" id="title4" name="title4" class="form-control" th:field="*{title4}" placeholder="Nhập tiêu đề phần 4" required>
+        </div>
+        <div class="form-group">
+            <label for="content4">Nội Dung Phần 4</label>
+            <textarea id="content4" name="content4" class="form-control" th:field="*{content4}" placeholder="Nhập nội dung phần 4" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="video">Liên Kết Video</label>
+            <input type="url" id="video" name="video" class="form-control" th:field="*{video}" placeholder="Nhập liên kết video (URL)" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Bài Học</button>
+    </form>
+</div>
+
+<!-- footer section -->
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+</body>
+
+</html>
