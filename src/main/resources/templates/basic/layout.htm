@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:insert="${title}">Default Title</title>
+    <!-- Thêm các liên kết CSS/JS chung ở đây -->
+</head>
+<body>
+
+<!-- Header chung -->
+<header th:replace="/basic/fragments/header :: header"></header>
+
+<!-- Nội dung của trang con sẽ được chèn vào đây -->
+<div th:insert="${content}"></div>
+
+<!-- Footer chung -->
+<footer th:replace="basic/fragments/footer :: footer"></footer>
+
+</body>
+</html>

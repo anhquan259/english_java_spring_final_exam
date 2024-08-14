@@ -81,6 +81,9 @@
                 <li class="nav-item">
                   <a class="nav-link" th:href="@{/tratu}"> Tra từ</a>
                 </li>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/user}"> Quản Lý User </a>
+                </li>
                 <!-- user -->
                 <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
                   <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>

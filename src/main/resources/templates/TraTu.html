@@ -114,66 +114,7 @@
 <body class="sub_page">
   <div class="top_container ">
     <!-- header section strats -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" th:href="@{/}">
-            <span>
-              Duy Đạt
-            </span>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" th:href="@{/}"> Trang chủ <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
-                  <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
-                </li>
-                <li class="nav-item " th:if="${session.role == '2'}">
-                  <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
-                </li>
-                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
-                  <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
-                </li>
-                <li class="nav-item " th:if="${session.role == '2'}">
-                  <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{/rank}"> Bảng xếp hạng </a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" th:href="@{/tratu}"> Tra từ</a>
-                </li>
-                <!-- user -->
-                <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
-                  <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
-                  <a class="nav-link" th:href="@{/profile}"><img class="avatar" src="images/avatar.jpg"></a>
-                </li>
-                <!-- guest -->
-                <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
-                  <a th:href="@{/login}" class="taskbar-btn">
-                    Đăng Nhập
-                  </a>
-                  <a th:href="@{/register}" class="taskbar-btn">
-                    Đăng Ký
-                  </a>
-                </li>
-
-              </ul>
-            </div>
-            </div>
-        </nav>
-      </div>
-    </header>
+    <header th:replace="fragments/header :: header"></header>
 
   </div>
   <!-- end header section -->
