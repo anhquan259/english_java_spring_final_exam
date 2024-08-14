@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>BaiThi</title>
+
+
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <!-- progress barstle -->
+    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <!-- Custom taskbar for this template -->
+    <link href="/css/taskbar.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet" />
+    <link href="/css/Thi.css" rel="stylesheet" />
+    <link href="/css/BaiHoc.css" rel="stylesheet" />
+
+
+
+
+    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
+
+
+
+    <script
+            src="/js/jquery-1.js"></script>
+    <script
+            src="/js/baiTestReading.js"></script>
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+        });
+    </script>
+
+
+</head>
+
+<body class="sub_page">
+<div class="top_container ">
+    <!-- header section strats -->
+    <header th:replace="fragments/header :: header"></header>
+</div>
+<!-- end header section -->
+<div class="container mt-5">
+    <h2 class="mb-4">Danh sách người dùng</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ và tên</th>
+            <th>Tên người dùng</th>
+            <th>Vai trò</th>
+            <th>Điểm TB</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Duyệt qua danh sách người dùng -->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.userId}">1</td>
+            <td th:text="${user.fullname}">Nguyen Van A</td>
+            <td th:text="${user.username}">nguyenvana</td>
+            <td th:text="${user.role == 1 ? 'Admin' : 'User'}">Admin</td>
+            <td th:text="${user.diemTB}">8.5</td>
+            <td>
+                <a th:href="@{/user/edit/{id}(id=${user.userId})}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                <a th:href="@{/user/delete/{id}(id=${user.userId})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/user/add}" class="btn btn-success">Thêm người dùng mới</a>
+</div>
+<!-- footer section -->
+
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+
+</body>
+
+</html>
