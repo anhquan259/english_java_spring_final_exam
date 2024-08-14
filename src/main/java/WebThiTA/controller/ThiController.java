@@ -176,5 +176,6 @@ public class ThiController {
                 cauHoiSet.add(cauHoi);
             }
         }
+        baiThi.setListQuestion(cauHoiSet);
     }
 }
