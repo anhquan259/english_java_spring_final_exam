@@ -1,10 +1,7 @@
 package WebThiTA.controller;
 
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -141,7 +138,7 @@ public class ThiController {
     }
 
     @RequestMapping("/thi/add")
-    public String baiHoc(Model model, HttpServletRequest request) {
+    public String thiNew(Model model, HttpServletRequest request) {
         //authen
         HttpSession ss= request.getSession();
         if(ss.getAttribute("username")==null)
@@ -149,5 +146,35 @@ public class ThiController {
         //lấy bai thi
         model.addAttribute("baiThi", new BaiThiDTO());
         return "ThiNew";
+    }
+    @RequestMapping("/thi/add-exam")
+    public String thiAddExam(Model model,HttpServletRequest request,@ModelAttribute("baiThi") BaiThiDTO baiThi){
+        BaiThi baiThiSave = new BaiThi();
+        convertBaiThiDTOToBaiThi(baiThi,baiThiSave);
+        try {
+            baiThiRepo.save(baiThiSave);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "redirect:/listbaithi";
+    }
+    private void convertBaiThiDTOToBaiThi(BaiThiDTO baiThiDTO,BaiThi baiThi){
+        baiThi.setContent(baiThiDTO.getContent());
+        baiThi.setExamName(baiThiDTO.getExamName());
+        Set<CauHoi> cauHoiSet = new HashSet<>();
+        if (baiThiDTO.getListCauHoi()!= null || baiThiDTO.getListCauHoi().size()>0){
+            for (CauHoiDTO cauHoiDTO: baiThiDTO.getListCauHoi()){
+                CauHoi cauHoi = new CauHoi();
+                cauHoi.setExam(baiThi);
+                cauHoi.setCorrectanswer(cauHoiDTO.getCorrectanswer());
+                cauHoi.setOption1(cauHoiDTO.getOption1());
+                cauHoi.setOption2(cauHoiDTO.getOption2());
+                cauHoi.setOption3(cauHoiDTO.getOption3());
+                cauHoi.setOption4(cauHoiDTO.getOption4());
+                cauHoi.setQuestion(cauHoiDTO.getQuestion());
+                cauHoiSet.add(cauHoi);
+            }
+        }
     }
 }

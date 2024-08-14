@@ -86,59 +86,26 @@
 
 <div id="addExamForm" class="container mt-5">
     <h2 class="ntitle">Thêm Bài Thi Mới</h2>
-    <form th:action="@{/add-exam}" th:object="${baiThi}" method="post">
+    <form th:action="@{/thi/add-exam}" th:object="${baiThi}" method="post">
         <div class="form-group">
             <label for="title">Tiêu Đề Bài Thi</label>
-            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" placeholder="Nhập tiêu đề bài thi" required>
+            <input type="text" id="title" name="title" class="form-control" th:field="*{examName}" placeholder="Nhập tiêu đề bài thi" required>
         </div>
-        <div class="form-group">
-            <label for="description">Mô Tả Bài Thi</label>
-            <textarea id="description" name="description" class="form-control" th:field="*{description}" placeholder="Nhập mô tả bài thi" rows="3" required></textarea>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="description">Mô Tả Bài Thi</label>-->
+<!--            <textarea id="description" name="description" class="form-control" th:field="*{description}" placeholder="Nhập mô tả bài thi" rows="3" required></textarea>-->
+<!--        </div>-->
         <div class="form-group">
             <label for="content">Nội Dung Bài Thi</label>
             <textarea id="content" name="content" class="form-control" th:field="*{content}" placeholder="Nhập nội dung bài thi" rows="5" required></textarea>
         </div>
 
         <h3>Thêm Câu Hỏi</h3>
-        <div th:each="cauHoi, status : ${baiThi.listCauHoi}">
-            <div class="form-group">
-                <label th:for="|question${status.index}|">Câu Hỏi [[${status.index} + 1]]</label>
-                <input type="text" th:id="|question${status.index}|" th:name="|listCauHoi[${status.index}].question|"
-                       class="form-control" th:field="*{listCauHoi[status.index].question}" placeholder="Nhập câu hỏi" required>
-            </div>
-            <div class="form-group">
-                <label th:for="|option1${status.index}|">Lựa Chọn A</label>
-                <input type="text" th:id="|option1${status.index}|" th:name="|listCauHoi[${status.index}].option1|"
-                       class="form-control" th:field="*{listCauHoi[status.index].option1}" placeholder="Nhập lựa chọn A" required>
-            </div>
-            <div class="form-group">
-                <label th:for="|option2${status.index}|">Lựa Chọn B</label>
-                <input type="text" th:id="|option2${status.index}|" th:name="|listCauHoi[${status.index}].option2|"
-                       class="form-control" th:field="*{listCauHoi[status.index].option2}" placeholder="Nhập lựa chọn B" required>
-            </div>
-            <div class="form-group">
-                <label th:for="|option3${status.index}|">Lựa Chọn C</label>
-                <input type="text" th:id="|option3${status.index}|" th:name="|listCauHoi[${status.index}].option3|"
-                       class="form-control" th:field="*{listCauHoi[status.index].option3}" placeholder="Nhập lựa chọn C" required>
-            </div>
-            <div class="form-group">
-                <label th:for="|option4${status.index}|">Lựa Chọn D</label>
-                <input type="text" th:id="|option4${status.index}|" th:name="|listCauHoi[${status.index}].option4|"
-                       class="form-control" th:field="*{listCauHoi[status.index].option4}" placeholder="Nhập lựa chọn D" required>
-            </div>
-            <div class="form-group">
-                <label th:for="|correctAnswer${status.index}|">Đáp Án Đúng</label>
-                <select th:id="|correctAnswer${status.index}|" th:name="|listCauHoi[${status.index}].correctanswer|"
-                        class="form-control" th:field="*{listCauHoi[status.index].correctanswer}" required>
-                    <option th:value="${cauHoi.option1}" th:text="${cauHoi.option1}">A</option>
-                    <option th:value="${cauHoi.option2}" th:text="${cauHoi.option2}">B</option>
-                    <option th:value="${cauHoi.option3}" th:text="${cauHoi.option3}">C</option>
-                    <option th:value="${cauHoi.option4}" th:text="${cauHoi.option4}">D</option>
-                </select>
-            </div>
-            <hr>
+        <div id="question-container">
+            <!-- Câu hỏi sẽ được thêm vào đây -->
         </div>
+        <button type="button" class="btn btn-secondary" id="add-question-btn">Thêm Câu Hỏi</button>
+        <br><br>
 
         <button type="submit" class="btn btn-primary">Thêm Bài Thi</button>
     </form>
@@ -149,5 +116,68 @@
 <script type="text/javascript" src="/js/bootstrap.js"></script>
 
 </body>
+<script>
+    $(document).ready(function() {
+        var questionIndex = 0;
+
+        $('#add-question-btn').click(function() {
+            var questionHtml = `
+                <div class="question-group" id="question-group-${questionIndex}">
+                    <input type="hidden" name="listCauHoi[${questionIndex}].questionId" value="">
+                    <input type="hidden" name="listCauHoi[${questionIndex}].index" value="${questionIndex}">
+                    <input type="hidden" name="listCauHoi[${questionIndex}].exam" th:value="*{exam}">
+                    <div class="form-group">
+                        <label for="question${questionIndex}">Câu Hỏi ${questionIndex + 1}</label>
+                        <input type="text" id="question${questionIndex}" name="listCauHoi[${questionIndex}].question"
+                               class="form-control" placeholder="Nhập câu hỏi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="option1_${questionIndex}">Lựa Chọn A</label>
+                        <input type="text" id="option1_${questionIndex}" name="listCauHoi[${questionIndex}].option1"
+                               class="form-control" placeholder="Nhập lựa chọn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="option2_${questionIndex}">Lựa Chọn B</label>
+                        <input type="text" id="option2_${questionIndex}" name="listCauHoi[${questionIndex}].option2"
+                               class="form-control" placeholder="Nhập lựa chọn B" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="option3_${questionIndex}">Lựa Chọn C</label>
+                        <input type="text" id="option3_${questionIndex}" name="listCauHoi[${questionIndex}].option3"
+                               class="form-control" placeholder="Nhập lựa chọn C" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="option4_${questionIndex}">Lựa Chọn D</label>
+                        <input type="text" id="option4_${questionIndex}" name="listCauHoi[${questionIndex}].option4"
+                               class="form-control" placeholder="Nhập lựa chọn D" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correctAnswer_${questionIndex}">Đáp Án Đúng</label>
+                        <select id="correctAnswer_${questionIndex}" name="listCauHoi[${questionIndex}].correctanswer"
+                                class="form-control" required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-danger remove-question-btn" data-question-id="question-group-${questionIndex}">Xóa Câu Hỏi</button>
+                    <hr>
+                </div>
+            `;
+
+            $('#question-container').append(questionHtml);
+            questionIndex++;
+        });
+
+        // Event listener to remove question group
+        $(document).on('click', '.remove-question-btn', function() {
+            var questionGroupId = $(this).data('question-id');
+            $('#' + questionGroupId).remove();
+        });
+    });
+</script>
+
+
 
 </html>
