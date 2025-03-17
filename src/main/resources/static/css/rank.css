@@ -1,16 +1,19 @@
-.table-rank{
+.table-rank {
     width: 100%;
 }
-.table-element{
+
+.table-element {
     width: 25%;
     text-align: center;
     border: 1px solid #000;
 }
-.table-element-td{
+
+.table-element-td {
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     border: 1px solid #000;
 }
-tr{
+
+tr {
     height: 48px;
 }

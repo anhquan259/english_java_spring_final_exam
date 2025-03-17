@@ -1,48 +1,48 @@
 package WebThiTA.model;
 
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
+
 @Entity
-@Table(name="Accounts")
+@Table(name = "Accounts")
 @Data
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     @EqualsAndHashCode.Include
     private Long userId;
-	@Column(nullable = false)
-	private String Fullname;
-	@Column(nullable = false)
-	private String username;
-	@Column(nullable = false)
-	private String password;
-	@Column(nullable = false)
-	private int role;
-	@Column(nullable = false)
-	private double diemTB;
+    @Column(nullable = false)
+    private String Fullname;
+    @Column(nullable = false)
+    private String username;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
+    private int role;
+    @Column(nullable = false)
+    private double diemTB;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     @ToString.Exclude
-	private Set<Diem> diem;
+    private Set<Diem> diem;
 
     public User() {
     }
+
     public User(String email, String password, String fullname) {
-        this.Fullname=fullname;
-        this.username=email;
-        this.password=password;
-        this.diemTB=0.0;
-        this.role=1;
+        this.Fullname = fullname;
+        this.username = email;
+        this.password = password;
+        this.diemTB = 0.0;
+        this.role = 1;
     }
 
     public Long getUserId() {
@@ -100,6 +100,7 @@ public class User {
     public void setDiem(Set<Diem> diem) {
         this.diem = diem;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(userId); // Sử dụng một thuộc tính đơn lẻ như id thay vì các đối tượng khác có thể gây đệ quy.

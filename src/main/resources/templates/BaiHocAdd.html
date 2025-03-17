@@ -3,52 +3,48 @@
 
 <head>
     <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
     <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <title>Thêm Bài Học</title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <!-- progress barstle -->
-    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
+    <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
     <!-- font wesome stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet"/>
     <!-- Custom taskbar for this template -->
-    <link href="/css/taskbar.css" rel="stylesheet" />
+    <link href="/css/taskbar.css" rel="stylesheet"/>
     <!-- responsive style -->
-    <link href="/css/responsive.css" rel="stylesheet" />
-    <link href="/css/Thi.css" rel="stylesheet" />
-    <link href="/css/BaiHoc.css" rel="stylesheet" />
+    <link href="/css/responsive.css" rel="stylesheet"/>
+    <link href="/css/Thi.css" rel="stylesheet"/>
+    <link href="/css/BaiHoc.css" rel="stylesheet"/>
 
 
-
-
-    <link rel="stylesheet" href="/css/css-circular-prog-bar.css">
-
+    <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
 
 
     <script
             src="/js/jquery-1.js"></script>
     <script
             src="/js/baiTestReading.js"></script>
-    <script type="text/javascript"
-            src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"
+            type="text/javascript"></script>
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
 
         });
     </script>
@@ -65,8 +61,9 @@
               Duy Đạt
             </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -95,13 +92,14 @@
                                 <a class="nav-link" th:href="@{/tratu}">Tra từ</a>
                             </li>
 
-                            <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
+                            <li class="user-taskbar nav-item" th:unless="${session.isEmpty()}">
                                 <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
-                                <a class="nav-link" th:href="@{/profile}"><img class="avatar" th:src="@{/images/avatar.jpg}"></a>
+                                <a class="nav-link" th:href="@{/profile}"><img class="avatar"
+                                                                               th:src="@{/images/avatar.jpg}"></a>
                             </li>
-                            <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
-                                <a th:href="@{/login}" class="taskbar-btn">Đăng Nhập</a>
-                                <a th:href="@{/register}" class="taskbar-btn">Đăng Ký</a>
+                            <li class="guest-taskbar nav-item" th:if="${session.isEmpty()}">
+                                <a class="taskbar-btn" th:href="@{/login}">Đăng Nhập</a>
+                                <a class="taskbar-btn" th:href="@{/register}">Đăng Ký</a>
                             </li>
                         </ul>
                     </div>
@@ -112,56 +110,66 @@
 </div>
 <!-- end header section -->
 
-<div id="addLessonForm" class="container mt-5">
+<div class="container mt-5" id="addLessonForm">
     <h2 class="ntitle">Thêm Bài Học Mới</h2>
-    <form th:action="@{/khoahoc/add-lesson}" th:object="${baiHoc}" method="post">
+    <form method="post" th:action="@{/khoahoc/add-lesson}" th:object="${baiHoc}">
         <div class="form-group">
             <label for="title">Tiêu Đề Bài Học</label>
-            <input type="text" id="title" name="title" class="form-control" th:field="*{title}" placeholder="Nhập tiêu đề bài học" required>
+            <input class="form-control" id="title" name="title" placeholder="Nhập tiêu đề bài học" required
+                   th:field="*{title}" type="text">
         </div>
         <div class="form-group">
             <label for="title1">Tiêu Đề Phần 1</label>
-            <input type="text" id="title1" name="title1" class="form-control" th:field="*{title1}" placeholder="Nhập tiêu đề phần 1" required>
+            <input class="form-control" id="title1" name="title1" placeholder="Nhập tiêu đề phần 1" required
+                   th:field="*{title1}" type="text">
         </div>
         <div class="form-group">
             <label for="content1">Nội Dung Phần 1</label>
-            <textarea id="content1" name="content1" class="form-control" th:field="*{content1}" placeholder="Nhập nội dung phần 1" rows="3" required></textarea>
+            <textarea class="form-control" id="content1" name="content1" placeholder="Nhập nội dung phần 1"
+                      required rows="3" th:field="*{content1}"></textarea>
         </div>
         <div class="form-group">
             <label for="title2">Tiêu Đề Phần 2</label>
-            <input type="text" id="title2" name="title2" class="form-control" th:field="*{title2}" placeholder="Nhập tiêu đề phần 2" required>
+            <input class="form-control" id="title2" name="title2" placeholder="Nhập tiêu đề phần 2" required
+                   th:field="*{title2}" type="text">
         </div>
         <div class="form-group">
             <label for="content2">Nội Dung Phần 2</label>
-            <textarea id="content2" name="content2" class="form-control" th:field="*{content2}" placeholder="Nhập nội dung phần 2" rows="3" required></textarea>
+            <textarea class="form-control" id="content2" name="content2" placeholder="Nhập nội dung phần 2"
+                      required rows="3" th:field="*{content2}"></textarea>
         </div>
         <div class="form-group">
             <label for="title3">Tiêu Đề Phần 3</label>
-            <input type="text" id="title3" name="title3" class="form-control" th:field="*{title3}" placeholder="Nhập tiêu đề phần 3" required>
+            <input class="form-control" id="title3" name="title3" placeholder="Nhập tiêu đề phần 3" required
+                   th:field="*{title3}" type="text">
         </div>
         <div class="form-group">
             <label for="content3">Nội Dung Phần 3</label>
-            <textarea id="content3" name="content3" class="form-control" th:field="*{content3}" placeholder="Nhập nội dung phần 3" rows="3" required></textarea>
+            <textarea class="form-control" id="content3" name="content3" placeholder="Nhập nội dung phần 3"
+                      required rows="3" th:field="*{content3}"></textarea>
         </div>
         <div class="form-group">
             <label for="title4">Tiêu Đề Phần 4</label>
-            <input type="text" id="title4" name="title4" class="form-control" th:field="*{title4}" placeholder="Nhập tiêu đề phần 4" required>
+            <input class="form-control" id="title4" name="title4" placeholder="Nhập tiêu đề phần 4" required
+                   th:field="*{title4}" type="text">
         </div>
         <div class="form-group">
             <label for="content4">Nội Dung Phần 4</label>
-            <textarea id="content4" name="content4" class="form-control" th:field="*{content4}" placeholder="Nhập nội dung phần 4" rows="3" required></textarea>
+            <textarea class="form-control" id="content4" name="content4" placeholder="Nhập nội dung phần 4"
+                      required rows="3" th:field="*{content4}"></textarea>
         </div>
         <div class="form-group">
             <label for="video">Liên Kết Video</label>
-            <input type="url" id="video" name="video" class="form-control" th:field="*{video}" placeholder="Nhập liên kết video (URL)" required>
+            <input class="form-control" id="video" name="video" placeholder="Nhập liên kết video (URL)" required
+                   th:field="*{video}" type="url">
         </div>
-        <button type="submit" class="btn btn-primary">Thêm Bài Học</button>
+        <button class="btn btn-primary" type="submit">Thêm Bài Học</button>
     </form>
 </div>
 
 <!-- footer section -->
-<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.js"></script>
+<script src="/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
 
 </body>
 

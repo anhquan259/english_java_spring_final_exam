@@ -1,22 +1,17 @@
 package WebThiTA.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import WebThiTA.constant.Translate;
 import WebThiTA.dto.languageDto;
-import WebThiTA.constant.*;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/translate")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class TranslateController {
     @PostMapping("/")
     public static languageDto Translate(@RequestBody languageDto lang) {
-        System.out.println("json: "+" "+ lang.getText());
-        String tranT=null;
+        System.out.println("json: " + " " + lang.getText());
+        String tranT = null;
         try {
             tranT = Translate.translate("en", "vi", lang.getText());
         } catch (Exception e) {
@@ -26,7 +21,7 @@ public class TranslateController {
         lang.setText(tranT);
         return lang;
     }
-    
+
 //    @PostMapping("/")
 //    public static languageDto Translate(S) {
 //        System.out.println("json: "+" "+ lang.getText());
@@ -40,5 +35,5 @@ public class TranslateController {
 //        lang.setText(tranT);
 //        return lang;
 //    }
-    
+
 }

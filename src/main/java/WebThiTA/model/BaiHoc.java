@@ -1,43 +1,40 @@
 package WebThiTA.model;
 
-import java.sql.Clob;
-
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "bai_hoc")
 @Data
 public class BaiHoc {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lesson_id")
     @EqualsAndHashCode.Include
     private Long lessonId;
-	@Column(nullable = false)
-	private String title;
-	@Column(name = "video")
-	private String video;
-	@Column()
+    @Column(nullable = false)
+    private String title;
+    @Column(name = "video")
+    private String video;
+    @Column()
     private String title1;
-	@Column(columnDefinition="varchar(1000)")
-	private String content1;
-	@Column()
+    @Column(columnDefinition = "varchar(1000)")
+    private String content1;
+    @Column()
     private String title2;
-	@Column(columnDefinition="varchar(1000)")
+    @Column(columnDefinition = "varchar(1000)")
     private String content2;
     @Column()
     private String title3;
-    @Column(columnDefinition="varchar(1000)")
+    @Column(columnDefinition = "varchar(1000)")
     private String content3;
     @Column()
     private String title4;
-    @Column(columnDefinition="varchar(1000)")
+    @Column(columnDefinition = "varchar(1000)")
     private String content4;
-	
+
 
     public BaiHoc() {
         super();
@@ -75,7 +72,6 @@ public class BaiHoc {
         this.title1 = title1;
     }
 
-  
 
     public String getTitle2() {
         return title2;
@@ -85,7 +81,6 @@ public class BaiHoc {
         this.title2 = title2;
     }
 
-    
 
     public String getTitle3() {
         return title3;
@@ -95,7 +90,6 @@ public class BaiHoc {
         this.title3 = title3;
     }
 
-    
 
     public String getTitle4() {
         return title4;
@@ -137,11 +131,5 @@ public class BaiHoc {
         this.content4 = content4;
     }
 
-    
-    
-    
 
-    
-    
-	
 }

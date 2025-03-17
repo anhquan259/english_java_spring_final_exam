@@ -1,11 +1,12 @@
-.user-taskbar{
+.user-taskbar {
     display: flex;
-} 
+}
+
 /*
 .guest-taskbar{
     display: none;
 } */
-.taskbar-btn{
+.taskbar-btn {
     display: inline-block;
     padding: 10px;
     border-radius: 5px;
@@ -16,11 +17,13 @@
     width: 132px;
     text-align: center;
 }
-.avatar{
+
+.avatar {
     width: 30px;
     height: 30px;
     border-radius: 100%;
 }
-.nav-link{
+
+.nav-link {
     cursor: pointer;
 }

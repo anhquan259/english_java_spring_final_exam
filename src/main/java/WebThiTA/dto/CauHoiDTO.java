@@ -1,26 +1,20 @@
 package WebThiTA.dto;
 
-import java.util.Set;
-
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import WebThiTA.model.BaiThi;
 
 
 public class CauHoiDTO {
-	
+
     private Long questionId;
-	private String question;
+    private String question;
     private String option1;
     private String option2;
     private String option3;
     private String option4;
     private String correctanswer;
     private String cauTraLoi;
-	private BaiThi exam;
-	private Long index;
+    private BaiThi exam;
+    private Long index;
 
     public CauHoiDTO() {
         super();
@@ -46,6 +40,10 @@ public class CauHoiDTO {
         return question;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     public Long getIndex() {
         return index;
     }
@@ -53,12 +51,6 @@ public class CauHoiDTO {
     public void setIndex(Long index) {
         this.index = index;
     }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    
 
     public BaiThi getExam() {
         return exam;
@@ -107,6 +99,6 @@ public class CauHoiDTO {
     public void setCorrectanswer(String correctanswer) {
         this.correctanswer = correctanswer;
     }
-    
-	
+
+
 }

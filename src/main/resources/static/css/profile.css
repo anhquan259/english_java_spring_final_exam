@@ -1,34 +1,40 @@
-.avatar-profile{
+.avatar-profile {
     width: 300px;
     height: 300px;
     border-radius: 100%;
 }
-.container-name{
+
+.container-name {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.name-profile{
+
+.name-profile {
     margin-top: 20px;
     margin-bottom: 10px;
     font-weight: 800;
     font-size: 24px;
 }
-.nav-bar-profile{
+
+.nav-bar-profile {
     display: flex;
     justify-content: flex-start;
 }
-.nav-bar-profile-active{
+
+.nav-bar-profile-active {
     margin-bottom: 24px;
     display: flex;
 }
-.btn-navbar-active{
+
+.btn-navbar-active {
     height: 2px;
     width: 240px;
     background-color: #fdd31d;
     margin-left: 24px;
 }
-.btn-navbar{
+
+.btn-navbar {
     width: 240px;
     font-size: 18px;
     font-weight: 600;
@@ -38,37 +44,45 @@
     border-radius: 5px;
     text-align: center;
 }
-.btn-navbar:hover{
+
+.btn-navbar:hover {
     background-color: rgb(232, 232, 232);
 }
-.table-point{
+
+.table-point {
     width: 100%;
     margin-top: 24px;
 }
-.table-element{
+
+.table-element {
     width: 25%;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     margin-top: 5px;
 }
-.point{
+
+.point {
     display: none;
 }
-.info{
+
+.info {
     display: none;
 }
-.label-profile{
+
+.label-profile {
     width: 168px;
     margin-top: 24px;
 }
-.input-profile{
+
+.input-profile {
     border: none;
     border-bottom: 1px solid #000;
     width: 360px;
     outline: none;
     margin-top: 24px;
 }
-.btn-profile{
+
+.btn-profile {
     display: none;
     cursor: pointer;
     border: none;
@@ -81,11 +95,12 @@
     color: white;
     font-weight: 600;
 }
-.input-password{
+
+.input-password {
     display: none;
 }
 
 
-.display{
+.display {
     display: block;
 }

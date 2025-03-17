@@ -1,43 +1,40 @@
 package WebThiTA.model;
 
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cau_hoi")
 @Data
 public class CauHoi {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     @EqualsAndHashCode.Include
     private Long questionId;
-	@Column(nullable = false)
-	private String question;
-	@Column(nullable = false)
+    @Column(nullable = false)
+    private String question;
+    @Column(nullable = false)
     private String option1;
-	@Column(nullable = false)
+    @Column(nullable = false)
     private String option2;
-	@Column(nullable = false)
+    @Column(nullable = false)
     private String option3;
-	@Column(nullable = false)
+    @Column(nullable = false)
     private String option4;
-	@Column(name = "correctanswer")
+    @Column(name = "correctanswer")
     private String correctanswer;
 
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="exam_id", nullable = false, referencedColumnName = "exam_id")
-	@JsonBackReference
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exam_id", nullable = false, referencedColumnName = "exam_id")
+    @JsonBackReference
     @ToString.Exclude
-	private BaiThi exam;
+    private BaiThi exam;
 
     public CauHoi() {
         super();
@@ -59,7 +56,6 @@ public class CauHoi {
         this.question = question;
     }
 
-    
 
     public BaiThi getExam() {
         return exam;
@@ -108,6 +104,6 @@ public class CauHoi {
     public void setCorrectanswer(String correctanswer) {
         this.correctanswer = correctanswer;
     }
-    
-	
+
+
 }

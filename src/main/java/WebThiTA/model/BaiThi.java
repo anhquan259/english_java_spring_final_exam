@@ -1,39 +1,38 @@
 package WebThiTA.model;
 
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "bai_thi")
 @Data
 public class BaiThi {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exam_id")
     @EqualsAndHashCode.Include
     private Long examId;
-	@Column(nullable = false,name = "exam_name")
-	private String examName;
-	@Column(columnDefinition="varchar(1000)")
+    @Column(nullable = false, name = "exam_name")
+    private String examName;
+    @Column(columnDefinition = "varchar(1000)")
     private String content;
-	
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference
-    @ToString.Exclude
-	private Set<Diem> listDiem;
 
-	@OneToMany(mappedBy = "exam", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     @ToString.Exclude
-	private Set<CauHoi> listQuestion;
+    private Set<Diem> listDiem;
+
+    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ToString.Exclude
+    private Set<CauHoi> listQuestion;
 
     public BaiThi() {
         super();
@@ -55,7 +54,7 @@ public class BaiThi {
         this.examName = examName;
     }
 
-    
+
     public String getContent() {
         return content;
     }
@@ -92,5 +91,5 @@ public class BaiThi {
         BaiThi baiThi = (BaiThi) o;
         return Objects.equals(examId, baiThi.examId);  // Sử dụng chỉ `examId` để so sánh
     }
-	
+
 }

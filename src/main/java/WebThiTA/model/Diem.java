@@ -1,37 +1,35 @@
 package WebThiTA.model;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "diem")
 @Data
 public class Diem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "point_id")
     @EqualsAndHashCode.Include
     private Long pointId;
-	@Column(nullable = false)
-	private String testDay;
+    @Column(nullable = false)
+    private String testDay;
     @Column(nullable = false)
     private Double point;
-	
-	
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="exam_id", nullable = false, referencedColumnName = "exam_id")
-	@JsonBackReference
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exam_id", nullable = false, referencedColumnName = "exam_id")
+    @JsonBackReference
     @ToString.Exclude
-	private BaiThi exam;
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable = false, referencedColumnName = "user_id")
+    private BaiThi exam;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "user_id")
     @JsonBackReference
     @ToString.Exclude
     private User user;
@@ -44,12 +42,12 @@ public class Diem {
         return point;
     }
 
-    public Long getPointId() {
-        return pointId;
-    }
-
     public void setPoint(Double point) {
         this.point = point;
+    }
+
+    public Long getPointId() {
+        return pointId;
     }
 
     public void setPointId(Long pointId) {
@@ -85,6 +83,7 @@ public class Diem {
     public void setExam(BaiThi exam) {
         this.exam = exam;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(pointId); // Sử dụng một thuộc tính đơn lẻ như id thay vì các đối tượng khác có thể gây đệ quy.

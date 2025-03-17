@@ -1,19 +1,22 @@
-.translate-container{
+.translate-container {
     display: flex;
     width: 100%;
 }
-.label-text{
+
+.label-text {
     width: 100%;
     text-align: center;
     font-size: 20px;
     font-weight: 600;
     font-family: 'Times New Roman', Times, serif;
 }
-.area-container{
+
+.area-container {
     width: 40%;
 }
-.translate-area{
-    width:100%;
+
+.translate-area {
+    width: 100%;
     resize: vertical;
     outline: none;
     padding: 20px;
@@ -21,15 +24,18 @@
     box-shadow: 0.5px 0.5px 2px 2px rgb(185, 185, 185);
     min-height: 100px;
 }
-.inner-block{
+
+.inner-block {
     width: 20%;
 }
-.translate{
+
+.translate {
     width: 50px;
     color: rgb(75, 75, 75);
     cursor: pointer;
 }
-.inner-block{
+
+.inner-block {
     margin-top: 20px;
     width: 20%;
     display: flex;
