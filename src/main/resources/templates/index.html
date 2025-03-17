@@ -2,165 +2,162 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- Basic -->
-    <meta charset="utf-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <!-- Mobile Metas -->
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
-    <!-- Site Metas -->
-    <meta content="" name="keywords"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
 
-    <title>Duy Đạt</title>
-
-
-    <!-- bootstrap core css -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <!-- progress barstle -->
-    <link href="css/css-circular-prog-bar.css" rel="stylesheet">
-    <!-- fonts style -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
-    <!-- font wesome stylesheet -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet"/>
-    <!-- Custom taskbar for this template -->
-    <link href="css/taskbar.css" rel="stylesheet"/>
-    <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet"/>
+  <title>Duy Đạt</title>
 
 
-    <link href="css/css-circular-prog-bar.css" rel="stylesheet">
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- progress barstle -->
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
+  <!-- font wesome stylesheet -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- Custom taskbar for this template -->
+  <link href="css/taskbar.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+
+
+
+  <link rel="stylesheet" href="css/css-circular-prog-bar.css">
 
 
 </head>
 
 <body>
-<div class="top_container">
+  <div class="top_container">
     <!-- header section strats -->
     <header class="header_section">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" th:href="@{/}">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" th:href="@{/}">
             <span>
               Duy Đạt
             </span>
-                </a>
-                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                        class="navbar-toggler"
-                        data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-                        <ul class="navbar-nav  ">
-                            <li class="nav-item active">
-                                <a class="nav-link" th:href="@{/}"> Trang chủ <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
-                                <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
-                            </li>
-                            <li class="nav-item " th:if="${session.role == '2'}">
-                                <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
-                            </li>
-                            <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
-                                <a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
-                            </li>
-                            <li class="nav-item " th:if="${session.role == '2'}">
-                                <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
-                            </li>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" th:href="@{/}"> Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
+                  <a class="nav-link" th:href="@{/khoahoc}"> Khóa học </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/khoahoc}"> Quản Lý Khóa học </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == null || session.role == '1'}">
+                	<a class="nav-link" th:href="@{/listbaithi}"> Thi </a>
+                </li>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
+                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/rank}"> Bảng xếp hạng </a>
-                            </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/rank}"> Bảng xếp hạng </a>
+                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/tratu}"> Tra từ</a>
-                            </li>
-                            <!-- user -->
-                            <li class="user-taskbar nav-item" th:unless="${session.isEmpty()}">
-                                <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
-                                <a class="nav-link" th:href="@{/profile}"><img class="avatar"
-                                                                               src="images/avatar.jpg"></a>
-                            </li>
-                            <!-- huest -->
-                            <li class="guest-taskbar nav-item" th:if="${session.isEmpty()}">
-                                <a class="taskbar-btn" th:href="@{/login}">
-                                    Đăng Nhập
-                                </a>
-                                <a class="taskbar-btn" th:href="@{/register}">
-                                    Đăng Ký
-                                </a>
-                            </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/tratu}"> Tra từ</a>
+                </li>
+                <li class="nav-item " th:if="${session.role == '2'}">
+                  <a class="nav-link" th:href="@{/user}"> Quản Lý User </a>
+                </li>
+                <!-- user -->
+                <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
+                  <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
+                  <a class="nav-link" th:href="@{/profile}"><img class="avatar" src="images/avatar.jpg"></a>
+                </li>
+                <!-- huest -->
+                <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
+                  <a th:href="@{/login}" class="taskbar-btn">
+                    Đăng Nhập
+                  </a>
+                  <a th:href="@{/register}" class="taskbar-btn">
+                    Đăng Ký
+                  </a>
+                </li>
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
     </header>
     <section class="hero_section ">
-        <div class="hero-container container">
-            <div class="hero_detail-box">
-                <h1>
-                    Lựa chọn tốt nhất để học tiếng Anh
-                </h1>
-                <p>
-                    Duy Đạt Là nhà tiên phong mang lại nền tảng Anh ngữ Học thuật với hơn 15 năm kinh nghiệm trong lĩnh
-                    vực đào tạo tiếng Anh và luyện thi Toeic tại Viêt Nam. Tại đây, chúng tôi luôn tâm niệm rằng học
-                    viên học tiếng Anh không chỉ là học một ngôn ngữ mới, mà còn học cách tư duy, khai phá kiến thức,
-                    học kỹ năng mềm và vốn sống để tự tin hòa nhập môi trường học tập và thành công trong môi trường làm
-                    việc toàn cầu.
-                </p>
-                <div class="hero_btn-continer">
-                    <a class="call_to-btn btn_white-border" th:href="@{/about}">
-                        Đọc thêm
-                    </a>
-                </div>
-            </div>
-            <div class="hero_img-container">
-                <div>
-                    <img alt="" class="img-fluid" src="images/hero.png">
-                </div>
-            </div>
+      <div class="hero-container container">
+        <div class="hero_detail-box">
+          <h1>
+            Lựa chọn tốt nhất để học tiếng Anh
+          </h1>
+          <p>
+            Duy Đạt Là nhà tiên phong mang lại nền tảng Anh ngữ Học thuật với hơn 15 năm kinh nghiệm trong lĩnh vực đào tạo tiếng Anh và luyện thi Toeic tại Viêt Nam. Tại đây, chúng tôi luôn tâm niệm rằng học viên học tiếng Anh không chỉ là học một ngôn ngữ mới, mà còn học cách tư duy, khai phá kiến thức, học kỹ năng mềm và vốn sống để tự tin hòa nhập môi trường học tập và thành công trong môi trường làm việc toàn cầu.
+          </p>
+          <div class="hero_btn-continer">
+            <a th:href="@{/about}" class="call_to-btn btn_white-border">
+              Đọc thêm
+            </a>
+          </div>
         </div>
+        <div class="hero_img-container">
+          <div>
+            <img src="images/hero.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
     </section>
-</div>
-<!-- end header section -->
+  </div>
+  <!-- end header section -->
 
-<div class="common_style">
+  <div class="common_style">
 
     <!-- about section -->
     <section class="about_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="about_img-container">
-                        <img alt="" src="images/about.png">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="about_detail-box">
-                        <h3>
-                            Về chúng tôi
-                        </h3>
-                        <p>
-                            Duy Đạt được quản lý bởi Duy Đạt Education Group, tổ chức giáo dục có trụ sở chính tại Hà
-                            Nôi và sẽ có mặt tại hơn 5 nước và vùng lãnh thổ sử dụng tiếng Anh là ngôn ngữ chính trên
-                            toàn cầu. Duy Đạt chuyên cung cấp các dịch vụ tư vấn du học, giảng dạy tiếng Anh cũng như
-                            đồng sở hữu và hướng tới tổ chức kỳ thi Toeic tại Việt Nam.
-                        </p>
-                        <div class="">
-                            <a class="call_to-btn btn_white-border" th:href="@{/about}">
-                                Nhiều hơn
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="about_img-container">
+              <img src="images/about.png" alt="">
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="about_detail-box">
+              <h3>
+                Về chúng tôi
+              </h3>
+              <p>
+                Duy Đạt được quản lý bởi Duy Đạt Education Group, tổ chức giáo dục có trụ sở chính tại Hà Nôi và sẽ có mặt tại hơn 5 nước và vùng lãnh thổ sử dụng tiếng Anh là ngôn ngữ chính trên toàn cầu. Duy Đạt chuyên cung cấp các dịch vụ tư vấn du học, giảng dạy tiếng Anh cũng như đồng sở hữu và hướng tới tổ chức kỳ thi Toeic tại Việt Nam.
+              </p>
+              <div class="">
+                <a th:href="@{/about}" class="call_to-btn btn_white-border">
+                  Nhiều hơn
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
 
@@ -169,221 +166,217 @@
 
     <!-- why section -->
     <section class="why_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="why_img-container">
-                        <img alt="" src="images/why.png">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="why_detail-box">
-                        <h3>
-                            Tại sao lại chọn Duy Đạt
-                        </h3>
-                        <p>
-                            Duy Đạt tự hào là đơn vị tiên phong trong việc đưa học sinh Việt Nam ra nước ngoài giao lưu
-                            và tiếp nhận Du học sinh nước ngoài vào Việt Nam học tập, nghiên cứu. Phối hợp với các cơ
-                            quan đại diện nước ngoài tại Việt Nam thúc đẩy giao lưu văn hóa, trao đổi giáo viên tình
-                            nguyện.
-                        </p>
-                        <div class="">
-                            <a class="call_to-btn btn_white-border" th:href="@{/about}">
-                                Nhiều hơn
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="why_img-container">
+              <img src="images/why.png" alt="">
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="why_detail-box">
+              <h3>
+                Tại sao lại chọn Duy Đạt
+              </h3>
+              <p>
+                Duy Đạt tự hào là đơn vị tiên phong trong việc đưa học sinh Việt Nam ra nước ngoài giao lưu và tiếp nhận Du học sinh nước ngoài vào Việt Nam học tập, nghiên cứu. Phối hợp với các cơ quan đại diện nước ngoài tại Việt Nam thúc đẩy giao lưu văn hóa, trao đổi giáo viên tình nguyện.
+              </p>
+              <div class="">
+                <a th:href="@{/about}" class="call_to-btn btn_white-border">
+                  Nhiều hơn
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
 
     <!-- end why section -->
 
-</div>
+  </div>
 
 
-<!-- client section -->
-<section class="client_section layout_padding">
+  <!-- client section -->
+  <section class="client_section layout_padding">
     <h2 class="">
-        Testimonial
+      Testimonial
     </h2>
     <div class="container">
-        <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
-                <li data-slide-to="1" data-target="#carouselExampleIndicators"></li>
-                <li data-slide-to="2" data-target="#carouselExampleIndicators"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="client_img-box">
-                                <img alt="" src="images/client.png">
-                            </div>
+              <div class="carousel-item active">
+                  <div class="row">
+                      <div class="col-md-3">
+                        <div class="client_img-box">
+                          <img src="images/client.png" alt="">
                         </div>
-                        <div class="col-md-9">
-                            <div class="client_detail-box">
-                                <h5>
-                                    Nguyen Cam Van
-                                </h5>
-                                <p>
-                                    Học tiếng anh ở đây rất thoải mái, thầy cô quan tâm, các bài thi chất lượng, tôi đã
-                                    nâng toeic của tôi từ 100 lên 990 trong vòng 1 tháng
-                                </p>
-                            </div>
+                      </div>
+                      <div class="col-md-9">
+                        <div class="client_detail-box">
+                          <h5>
+                            Nguyen Cam Van
+                          </h5>
+                          <p>
+                            Học tiếng anh ở đây rất thoải mái, thầy cô quan tâm, các bài thi chất lượng, tôi đã nâng toeic của tôi từ 100 lên 990 trong vòng 1 tháng
+                          </p>
                         </div>
+                      </div>
                     </div>
-                </div>
+              </div>
             </div>
-        </div>
-
+          </div>
+     
     </div>
-</section>
+  </section>
 
 
-<!-- end client section -->
+  <!-- end client section -->
 
 
-<!-- contact section -->
+    <!-- contact section -->
 
-<section class="contact_section ">
+    <section class="contact_section ">
 
-    <div class="container">
-
-        <div class="row">
+        <div class="container">
+         
+          <div class="row">
             <div class="col-md-6">
-                <div class="d-flex justify-content-center d-md-block">
-                    <h2>
-                        Liên hệ chúng tôi
-                    </h2>
-                </div>
-                <form action="">
-                    <div class="contact_form-container">
-                        <div>
-                            <div>
-                                <input placeholder="Tên" type="text">
-                            </div>
-                            <div>
-                                <input placeholder="Email" type="email">
-                            </div>
-                            <div>
-                                <input placeholder="Số điện thoại" type="text">
-                            </div>
-                            <div class="mt-5">
-                                <input placeholder="Tin nhắn" type="text">
-                            </div>
-                            <div class="mt-5">
-                                <button type="submit">
-                                    Gửi
-                                </button>
-                            </div>
-                        </div>
-
+              <div class="d-flex justify-content-center d-md-block">
+                <h2>
+                  Liên hệ chúng tôi
+                </h2>
+              </div>
+              <form action="">
+                <div class="contact_form-container">
+                  <div>
+                    <div>
+                      <input type="text" placeholder="Tên">
                     </div>
-
-                </form>
+                    <div>
+                      <input type="email" placeholder="Email">
+                    </div>
+                    <div>
+                      <input type="text" placeholder="Số điện thoại">
+                    </div>
+                    <div class="mt-5">
+                      <input type="text" placeholder="Tin nhắn">
+                    </div>
+                    <div class="mt-5">
+                      <button type="submit">
+                        Gửi
+                      </button>
+                    </div>
+                  </div>
+    
+                </div>
+    
+              </form>
             </div>
             <div class="col-md-6">
-                <div class="contact_img-box">
-                    <img alt="" src="images/students.jpg">
-                </div>
+              <div class="contact_img-box">
+                <img src="images/students.jpg" alt="">
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</section>
-<!-- end contact section -->
-<section class="info_section layout_padding-top">
+      </section>
+      <!-- end contact section -->
+  <section class="info_section layout_padding-top">
     <div class="info_logo-box">
-        <h2>
-            Duy Đạt
-        </h2>
+      <h2>
+        Duy Đạt
+      </h2>
     </div>
     <div class="container layout_padding2">
-        <div class="row">
-            <div class="col-md-3">
-                <h5>
-                    Về chúng tôi
-                </h5>
-                <p>
-                    Trang web giáo dục tiếng anh tốt nhất
-                </p>
-            </div>
-            <div class="col-md-3">
-                <h5>
-                    Liên kết hữu ích
-                </h5>
-                <ul>
-                    <li>
-                        <a href="@{#}">
-                            Video chò trơi
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h5>
-                    Liên hệ chúng tôi
-                </h5>
-                <p>
-                    <a style="color: white;" th:href="@{/contact}">Liên hệ</a>
-                </p>
-            </div>
-            <div class="col-md-3">
-
-                <div class="subscribe_container">
-                    <h5>
-                        Bản tin
-                    </h5>
-                    <div class="form_container">
-                        <form action="">
-                            <input placeholder="Nhập email của bạn" type="email">
-                            <button type="submit">
-                                Đặt mua
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
+      <div class="row">
+        <div class="col-md-3">
+          <h5>
+            Về chúng tôi
+          </h5>
+          <p>
+            Trang web giáo dục tiếng anh tốt nhất
+          </p>
         </div>
+        <div class="col-md-3">
+          <h5>
+            Liên kết hữu ích
+          </h5>
+          <ul>
+            <li>
+              <a href="@{#}">
+                Video chò trơi
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5>
+            Liên hệ chúng tôi
+          </h5>
+          <p>
+            <a th:href="@{/contact}" style="color: white;">Liên hệ</a>
+          </p>
+        </div>
+        <div class="col-md-3">
+
+          <div class="subscribe_container">
+            <h5>
+              Bản tin
+            </h5>
+            <div class="form_container">
+              <form action="">
+                <input type="email" placeholder="Nhập email của bạn">
+                <button type="submit">
+                  Đặt mua
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
     <div class="container">
-        <div class="social_container">
+      <div class="social_container">
 
-            <div class="social-box">
-                <a href="">
-                    <img alt="" src="images/fb.png">
-                </a>
+        <div class="social-box">
+          <a href="">
+            <img src="images/fb.png" alt="">
+          </a>
 
-                <a href="">
-                    <img alt="" src="images/twitter.png">
-                </a>
-                <a href="">
-                    <img alt="" src="images/linkedin.png">
-                </a>
-                <a href="">
-                    <img alt="" src="images/instagram.png">
-                </a>
-            </div>
+          <a href="">
+            <img src="images/twitter.png" alt="">
+          </a>
+          <a href="">
+            <img src="images/linkedin.png" alt="">
+          </a>
+          <a href="">
+            <img src="images/instagram.png" alt="">
+          </a>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- footer section -->
-<section class="container-fluid footer_section">
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
     <p>
-        Bản quyền &copy; 2024 Mọi quyền được bảo lưu
+      Bản quyền &copy; 2024 Mọi quyền được bảo lưu
     </p>
-</section>
-<!-- footer section -->
+  </section>
+  <!-- footer section -->
 
-<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
 
-
+ 
 </body>
 
 </html>
