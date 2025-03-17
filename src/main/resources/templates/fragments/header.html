@@ -10,8 +10,9 @@
               Duy Đạt
             </span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -45,16 +46,17 @@
                                 <a class="nav-link" th:href="@{/user}"> Quản Lý User </a>
                             </li>
                             <!-- user -->
-                            <li th:unless="${session.isEmpty()}" class="user-taskbar nav-item">
+                            <li class="user-taskbar nav-item" th:unless="${session.isEmpty()}">
                                 <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
-                                <a class="nav-link" th:href="@{/profile}"><img class="avatar" th:src="@{/images/avatar.jpg}"></a>
+                                <a class="nav-link" th:href="@{/profile}"><img class="avatar"
+                                                                               th:src="@{/images/avatar.jpg}"></a>
                             </li>
                             <!-- huest -->
-                            <li th:if="${session.isEmpty()}" class="guest-taskbar nav-item">
-                                <a th:href="@{/login}" class="taskbar-btn">
+                            <li class="guest-taskbar nav-item" th:if="${session.isEmpty()}">
+                                <a class="taskbar-btn" th:href="@{/login}">
                                     Đăng Nhập
                                 </a>
-                                <a th:href="@{/register}" class="taskbar-btn">
+                                <a class="taskbar-btn" th:href="@{/register}">
                                     Đăng Ký
                                 </a>
                             </li>
