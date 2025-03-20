@@ -12,8 +12,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>Duy Đạt</title>
-
+    <title>English Examination</title>
 
     <!-- bootstrap core css -->
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -30,10 +29,7 @@
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet"/>
 
-
     <link href="css/css-circular-prog-bar.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -44,7 +40,7 @@
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand" th:href="@{/}">
             <span>
-              Duy Đạt
+              English Examination
             </span>
                 </a>
                 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
@@ -71,24 +67,24 @@
                             <li class="nav-item " th:if="${session.role == '2'}">
                                 <a class="nav-link" th:href="@{/listbaithi}"> Quản lý bài thi </a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/rank}"> Bảng xếp hạng </a>
                             </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" th:href="@{/tratu}"> Tra từ</a>
                             </li>
                             <li class="nav-item " th:if="${session.role == '2'}">
                                 <a class="nav-link" th:href="@{/user}"> Quản Lý User </a>
                             </li>
+
                             <!-- user -->
                             <li class="user-taskbar nav-item" th:unless="${session.isEmpty()}">
                                 <a class="nav-link" th:href="@{/logout}">Đăng xuất</a>
                                 <a class="nav-link" th:href="@{/profile}"><img class="avatar"
                                                                                src="images/avatar.jpg"></a>
                             </li>
-                            <!-- huest -->
+
+                            <!-- guest -->
                             <li class="guest-taskbar nav-item" th:if="${session.isEmpty()}">
                                 <a class="taskbar-btn" th:href="@{/login}">
                                     Đăng Nhập
@@ -97,13 +93,13 @@
                                     Đăng Ký
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
+
     <section class="hero_section ">
         <div class="hero-container container">
             <div class="hero_detail-box">
@@ -111,7 +107,8 @@
                     Lựa chọn tốt nhất để học tiếng Anh
                 </h1>
                 <p>
-                    Duy Đạt Là nhà tiên phong mang lại nền tảng Anh ngữ Học thuật với hơn 15 năm kinh nghiệm trong lĩnh
+                    English Examination Là nhà tiên phong mang lại nền tảng Anh ngữ Học thuật với hơn 15 năm kinh nghiệm
+                    trong lĩnh
                     vực đào tạo tiếng Anh và luyện thi Toeic tại Viêt Nam. Tại đây, chúng tôi luôn tâm niệm rằng học
                     viên học tiếng Anh không chỉ là học một ngôn ngữ mới, mà còn học cách tư duy, khai phá kiến thức,
                     học kỹ năng mềm và vốn sống để tự tin hòa nhập môi trường học tập và thành công trong môi trường làm
@@ -134,7 +131,6 @@
 <!-- end header section -->
 
 <div class="common_style">
-
     <!-- about section -->
     <section class="about_section">
         <div class="container">
@@ -150,14 +146,16 @@
                             Về chúng tôi
                         </h3>
                         <p>
-                            Duy Đạt được quản lý bởi Duy Đạt Education Group, tổ chức giáo dục có trụ sở chính tại Hà
+                            English Examination được quản lý bởi NAQ Education Group, tổ chức giáo dục có trụ sở chính
+                            tại Hà
                             Nôi và sẽ có mặt tại hơn 5 nước và vùng lãnh thổ sử dụng tiếng Anh là ngôn ngữ chính trên
-                            toàn cầu. Duy Đạt chuyên cung cấp các dịch vụ tư vấn du học, giảng dạy tiếng Anh cũng như
+                            toàn cầu. English Examination chuyên cung cấp các dịch vụ tư vấn du học, giảng dạy tiếng Anh
+                            cũng như
                             đồng sở hữu và hướng tới tổ chức kỳ thi Toeic tại Việt Nam.
                         </p>
                         <div class="">
                             <a class="call_to-btn btn_white-border" th:href="@{/about}">
-                                Nhiều hơn
+                                Nhiều hơn >>
                             </a>
                         </div>
                     </div>
@@ -165,10 +163,7 @@
             </div>
         </div>
     </section>
-
-
     <!-- end about section -->
-
 
     <!-- why section -->
     <section class="why_section">
@@ -182,17 +177,18 @@
                 <div class="col-md-6">
                     <div class="why_detail-box">
                         <h3>
-                            Tại sao lại chọn Duy Đạt
+                            Tại sao lại chọn English Examination?
                         </h3>
                         <p>
-                            Duy Đạt tự hào là đơn vị tiên phong trong việc đưa học sinh Việt Nam ra nước ngoài giao lưu
+                            English Examination tự hào là đơn vị tiên phong trong việc đưa học sinh Việt Nam ra nước
+                            ngoài giao lưu
                             và tiếp nhận Du học sinh nước ngoài vào Việt Nam học tập, nghiên cứu. Phối hợp với các cơ
                             quan đại diện nước ngoài tại Việt Nam thúc đẩy giao lưu văn hóa, trao đổi giáo viên tình
                             nguyện.
                         </p>
                         <div class="">
                             <a class="call_to-btn btn_white-border" th:href="@{/about}">
-                                Nhiều hơn
+                                Nhiều hơn >>
                             </a>
                         </div>
                     </div>
@@ -200,12 +196,9 @@
             </div>
         </div>
     </section>
-
-
     <!-- end why section -->
 
 </div>
-
 
 <!-- client section -->
 <section class="client_section layout_padding">
@@ -214,13 +207,53 @@
     </h2>
     <div class="container">
         <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+            <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
                 <li data-slide-to="1" data-target="#carouselExampleIndicators"></li>
                 <li data-slide-to="2" data-target="#carouselExampleIndicators"></li>
             </ol>
+
+            <!-- Wrapper for slides -->
             <div class="carousel-inner">
+                <!-- Slide 1 -->
                 <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="client_img-box">
+                                <img alt="" src="images/client-2.jpeg">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="client_detail-box">
+                                <h5>Khánh Linh</h5>
+                                <p>Học tiếng Anh ở đây rất thoải mái, thầy cô quan tâm, các bài thi chất lượng, tôi đã
+                                    nâng Toeic của tôi từ 450 lên 900 trong vòng 3 tháng.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="client_img-box">
+                                <img alt="" src="images/client-3.jpeg">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="client_detail-box">
+                                <h5>Anh Khang</h5>
+                                <p>Thầy cô rất nhiệt tình và tận tâm, các buổi học được tổ chức chuyên nghiệp. Toeic của
+                                    tôi đã tăng từ 300 lên 850 trong 2 tháng.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="client_img-box">
@@ -229,33 +262,22 @@
                         </div>
                         <div class="col-md-9">
                             <div class="client_detail-box">
-                                <h5>
-                                    Nguyen Cam Van
-                                </h5>
-                                <p>
-                                    Học tiếng anh ở đây rất thoải mái, thầy cô quan tâm, các bài thi chất lượng, tôi đã
-                                    nâng toeic của tôi từ 100 lên 990 trong vòng 1 tháng
-                                </p>
+                                <h5>Minh Châu</h5>
+                                <p>Không gian học tập thoải mái và trang bị đầy đủ, giúp tôi tự tin hơn trong việc giao
+                                    tiếp tiếng Anh.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-
-
 <!-- end client section -->
 
-
 <!-- contact section -->
-
 <section class="contact_section ">
-
     <div class="container">
-
         <div class="row">
             <div class="col-md-6">
                 <div class="d-flex justify-content-center d-md-block">
@@ -284,9 +306,7 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
-
                 </form>
             </div>
             <div class="col-md-6">
@@ -298,10 +318,11 @@
     </div>
 </section>
 <!-- end contact section -->
+
 <section class="info_section layout_padding-top">
     <div class="info_logo-box">
         <h2>
-            Duy Đạt
+            English Examination
         </h2>
     </div>
     <div class="container layout_padding2">
@@ -321,7 +342,7 @@
                 <ul>
                     <li>
                         <a href="@{#}">
-                            Video chò trơi
+                            Video trò chơi
                         </a>
                     </li>
                 </ul>
@@ -378,15 +399,19 @@
 <!-- footer section -->
 <section class="container-fluid footer_section">
     <p>
-        Bản quyền &copy; 2024 Mọi quyền được bảo lưu
+        Bản quyền thuộc về NAQ Education Group &copy; 2025
     </p>
 </section>
 <!-- footer section -->
 
 <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
-
+<script>
+    // Auto next slide after every 5 mins
+    $('.carousel').carousel({
+        interval: 5000
+    });
+</script>
 
 </body>
-
 </html>

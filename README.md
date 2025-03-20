@@ -1,20 +1,20 @@
-# OracleK60_CNTTK60_Nhom11
+# DCCTKT62 - English Examination
 
-website học tiếng anh bằng ngôn ngữ java, database oracle
+Website học tiếng Anh
 
 # Công nghệ và công cụ sử dụng
 
-1.Ngôn ngữ: Javascript, Java
+    1. Ngôn ngữ: Java, Javascript
 
-2.Sử dụng: HTML, CSS, Bootstrap
+    2. Sử dụng: HTML, CSS, Bootstrap
 
-3.Framework: Spring boot, Jquery
+    3. Framework: Spring boot, Jquery
 
-4.Database: Oracle
+    4. Database: MySQL
 
-5.Công cụ:  Sts, Sqldeveloper.
+    5. Công cụ:  Sts, Sqldeveloper
 
-# Hình ảnh
+# Demo giao diện - chức năng
 
 ![image](https://user-images.githubusercontent.com/57392339/207086827-00d4e093-f892-47d1-bf2b-63915dbb1dc8.png)
 

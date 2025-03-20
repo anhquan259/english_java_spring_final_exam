@@ -217,7 +217,6 @@ a:focus {
     margin-bottom: 35px;
 }
 
-
 /* end hero section */
 
 /* common style for some sections */
@@ -244,7 +243,6 @@ a:focus {
     width: 100%;
 }
 
-
 /* end common style */
 
 /* about section */
@@ -260,8 +258,6 @@ a:focus {
 /* end about section */
 
 /* admission section */
-
-
 .admission_section a {
     background-color: #fdd31d;
     color: #fefeff;
@@ -270,7 +266,6 @@ a:focus {
 /* end admission section */
 
 /* why section */
-
 .why_section {
     text-align: right;
 }
@@ -283,13 +278,10 @@ a:focus {
 /* end why section */
 
 /* determine section */
-
-
 .determine_section a {
     background-color: #fdd31d;
     color: #fefeff;
 }
-
 
 /* end determine section */
 
@@ -303,7 +295,6 @@ a:focus {
 .client_section h2 {
     text-align: center;
 }
-
 
 .client_section h5 {
     font-size: 24px;
@@ -346,13 +337,11 @@ a:focus {
     animation-delay: .1s;
 }
 
-
 @keyframes beforeanimate {
     0% {
         top: 43%;
         transform: rotate(142deg);
         left: 31%;
-
     }
 
     100% {
@@ -398,7 +387,6 @@ a:focus {
 /* end client section */
 
 /* contact section */
-
 .contact_section {
     padding: 75px 45px;
     font-family: 'Poppins', sans-serif;
@@ -415,7 +403,6 @@ a:focus {
     width: 90%;
     margin: 15px 0;
 }
-
 
 .contact_form-container button {
     border: none;
@@ -447,9 +434,7 @@ a:focus {
     margin-bottom: 35px;
 }
 
-
 /* end contact section */
-
 
 /* info section */
 .info_section {
@@ -535,12 +520,10 @@ a:focus {
 /* end info section */
 
 /* footer section*/
-
 .footer_section {
     background-color: #d8b109;
     padding: 20px 15px;
     font-family: 'Poppins', sans-serif;
-
 }
 
 .footer_section p {
@@ -552,6 +535,5 @@ a:focus {
 .footer_section a {
     color: #fdfdfe;
 }
-
 
 /* end footer section*/
