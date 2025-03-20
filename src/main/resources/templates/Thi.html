@@ -120,7 +120,8 @@
                                    th:name="|listCauHoi[${status.index}].cauTraLoi|" th:value="${cauHoi.option1}"
                                    type="radio"/> A. [[*{option1}]] <br>
                             <input class="part5" onclick="markColorReading(this.id)" th:id="'question.'+*{index}"
-                                   th:name="|listCauHoi[${status.index}].cauTraLoi|" th:value="|listCauHoi[${status.index}].cauTraLoi|"
+                                   th:name="|listCauHoi[${status.index}].cauTraLoi|"
+                                   th:value="|listCauHoi[${status.index}].cauTraLoi|"
                                    type="radio"/> B. [[*{option2}]] <br>
                             <input class="part5" onclick="markColorReading(this.id)" th:id="'question.'+${cauHoi.index}"
                                    th:name="|listCauHoi[${status.index}].cauTraLoi|"
