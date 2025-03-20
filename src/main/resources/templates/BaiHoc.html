@@ -12,8 +12,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
 
-    <title>BaiThi</title>
-
+    <title>English Examination | Khoá học</title>
 
     <!-- bootstrap core css -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -32,9 +31,7 @@
     <link href="/css/Thi.css" rel="stylesheet"/>
     <link href="/css/BaiHoc.css" rel="stylesheet"/>
 
-
     <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
-
 
     <script
             src="/js/jquery-1.js"></script>
@@ -43,14 +40,11 @@
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"
             type="text/javascript"></script>
 
-
     <script type="text/javascript">
         $(document).ready(function () {
 
         });
     </script>
-
-
 </head>
 
 <body class="sub_page">
@@ -62,15 +56,10 @@
 
 <div id="resutlTest">
     <div class="container-fluid fill " id="content">
-
-
         <h2 class="ntitle">[[${baiHoc.title}]]</h2>
         <!--Nội dung bài test -->
         <div class="nlistbaithi">
-
             <div th:object="${baiHoc}">
-
-
                 <div class="ncontent">
                     <p class="nkt">
                         <b>[[*{title1}]] </b>
@@ -101,27 +90,19 @@
                 </div>
                 <br>
 
-
+                <h5>More video to better understand:</h5>
                 <iframe height="380px" th:src="${baiHoc.video}"
                         width="888px">
                 </iframe>
-
             </div>
-
-
         </div>
-
-
     </div>
 </div>
-
 
 <!-- footer section -->
 
 <script src="/js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
-
 </body>
-
 </html>

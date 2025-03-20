@@ -7,6 +7,7 @@ function markColorReading(id) {
 
 function correctAnswerReading() {
     var correctArr = [];
+
     for (var i = 1; i < 101; i++) {
         var nameRadio = "correctanswer" + i;
         var x = document.getElementById("submitForm").elements.namedItem(nameRadio).value;
@@ -17,7 +18,6 @@ function correctAnswerReading() {
 }
 
 function answerUserReading() {
-
     //var form = document.getElementById("submitForm");
     // array index start = 0
     var answerArr = [];
@@ -28,16 +28,13 @@ function answerUserReading() {
 
         if (result == null) answerArr.push("");
         else {
-
             var x = document.getElementById("submitForm").elements.namedItem(nameRadio).value;
             answerArr.push(x);
         }
-
     }
 
     return answerArr;
 }
-
 
 var timecheckReading;
 
@@ -60,8 +57,6 @@ function startTimerReading(duration, display) {
             clickSubmitReading();
         }
     }, 1000);
-
-
 }
 
 function startReadingClock() {
@@ -72,22 +67,16 @@ function startReadingClock() {
     // var check = document.getElementById("timeReading").value();
     //console.log("check:"+check);
     startTimerReading(fortyFiveMinutes, '45:00');
-};
-
+}
 
 // ket qua test( Listening + Reading)
 function clickSubmitReading() {
-
     clickResutlReading();
 
     var examId = document.getElementById('id_bai_exam').value;
-
     var correctListening = document.getElementById("soCauDungListening").value;
-
     var answerArr = answerUserReading();
-
     var correctArr = correctAnswerReading();
-
     var correctReading = 0;
 
     for (var i = 0; i < 50; i++) {
@@ -117,19 +106,15 @@ function clickSubmitReading() {
         }
     }
 
-
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
     xhttp.send();
 
     clearInterval(timecheckReading);
+
     document.getElementById("btnSubmitReading").style.display = 'none';
     document.getElementById("btnResultReading").style.display = 'none';
     document.getElementById("noteReading").style.display = 'none';
-
-
 }
-
 
 //cham diem bai test
 function clickResutlReading() {
@@ -137,30 +122,22 @@ function clickResutlReading() {
     clearInterval(timecheckReading);
 
     document.getElementById("btnResultReading").style.display = 'none';
-
     document.getElementById("noteReading").style.display = 'block';
-
     document.getElementById("btnSubmitReading").style.margin = "0px 0px 0px 100px";
 
     var answerArr = answerUserReading();
-
     var correctArr = correctAnswerReading();
-
     var countCorrect = 0;
 
     for (var i = 0; i < 50; i++) {
         if (answerArr[i] == correctArr[i] && answerArr[i] != ' ') countCorrect++;
-
     }
 
     var jsonAnswerUser = JSON.stringify(answerArr);
-
-
     var examId = document.getElementById('id_bai_exam').value;
     //var examId = $("#id_bai_exam").val();
-
     var url = "http://localhost:8080/thi/" + examId + "/" + countCorrect;
-    ;
+
     if (window.XMLHttpRequest) {
         xhttp = new XMLHttpRequest();
     } else {
@@ -171,18 +148,13 @@ function clickResutlReading() {
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4) {
-
             var data = xhttp.responseText;
             document.getElementById("main").innerHTML = data;
         }
     }
 
-
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
     xhttp.send(jsonAnswerUser);
-
-
 }
 
 
