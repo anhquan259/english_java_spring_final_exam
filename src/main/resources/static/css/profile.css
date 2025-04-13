@@ -104,3 +104,31 @@
 .display {
     display: block;
 }
+
+/* Định dạng icon mắt */
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.input-profile {
+    width: calc(100% - 30px);
+    padding-right: 30px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+.toggle-password:hover {
+    color: #fdd31d;
+}
+
+

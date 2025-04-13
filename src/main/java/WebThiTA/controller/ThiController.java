@@ -1,6 +1,5 @@
 package WebThiTA.controller;
 
-
 import WebThiTA.dto.BaiThiDTO;
 import WebThiTA.dto.CauHoiDTO;
 import WebThiTA.model.BaiThi;
@@ -14,6 +13,7 @@ import WebThiTA.reponsitory.UserRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,20 +42,22 @@ public class ThiController {
         //authen
         HttpSession ss = request.getSession();
         if (ss.getAttribute("username") == null)
-            return new String("redirect:/login");
-        //lấy bai thi
+            return "redirect:/login";
+
         List<BaiThi> listBaiThi = baiThiRepo.findAll();
         model.addAttribute("listBaiThi", listBaiThi);
         return "ListBaiThi";
 
     }
 
+    @Transactional
     @RequestMapping("/thi/{examId}")
     public ModelAndView loadCauHoiThi(ModelMap model, @PathVariable("examId") Long examId, HttpServletRequest request) {
         //authen
         HttpSession ss = request.getSession();
         if (ss.getAttribute("username") == null)
             return new ModelAndView("redirect:/login", model);
+
         //lấy câu hỏi thi
         BaiThi baiThi = baiThiRepo.getById(examId);
         BaiThiDTO baiThiDTO = new BaiThiDTO();
@@ -63,6 +65,7 @@ public class ThiController {
         List<CauHoi> listCauHoi = new ArrayList<>(baiThi.getListQuestion());
         ArrayList<CauHoiDTO> listCauHoiDTO = new ArrayList<>();
         Long index = (long) 1;
+
         for (CauHoi cauhoi : listCauHoi) {
             CauHoiDTO cauHoiDTO = new CauHoiDTO();
             BeanUtils.copyProperties(cauhoi, cauHoiDTO);
@@ -73,10 +76,11 @@ public class ThiController {
             baiThiDTO.setListCauHoi(listCauHoiDTO);
         }
         model.addAttribute("baiThi", baiThiDTO);
+
         int sLCauDung = 0;
         model.addAttribute("sLCauDung", sLCauDung);
-        return new ModelAndView("Thi", model);
 
+        return new ModelAndView("Thi", model);
     }
 
     @RequestMapping("/thi/nopbai")
@@ -84,7 +88,7 @@ public class ThiController {
         //authen
         HttpSession ss = request.getSession();
         if (ss.getAttribute("username") == null)
-            return new String("redirect:/login");
+            return "redirect:/login";
 
         int dem = 0;
         for (CauHoiDTO cauHoi : baiThi.getListCauHoi()) {
@@ -93,13 +97,13 @@ public class ThiController {
             }
         }
 
-
         int slcauhoi = baiThi.getListCauHoi().size();
         double point = dem * 10.0 / slcauhoi;
 
         String username = (String) ss.getAttribute("username");
         Optional<Diem> diemopt = diemRepo.find2(username, baiThi.getExamId());
         System.out.println(diemopt.isEmpty());
+
         if (!diemopt.isEmpty()) {
             Diem diem = diemopt.get();
             diem.setPoint(point);
@@ -112,30 +116,34 @@ public class ThiController {
             diemRepo.save(diem);
         } else {
             Diem diem = new Diem();
-
             diem.setPoint(point);
             diem.setTestDay((new Date()).toString());
+
             BaiThi baiThi2 = new BaiThi();
             baiThi2.setExamId(baiThi.getExamId());
             diem.setExam(baiThi2);
+
             Optional<User> user = userRepo.findByUsername(username);
             diem.setUser(user.get());
             diemRepo.save(diem);
         }
+
         List<Diem> listdiem = diemRepo.findByUsername(username);
         double diemtb = 0;
+
         for (Diem d : listdiem) {
             diemtb += d.getPoint();
         }
         diemtb /= listdiem.size();
+
         Optional<User> u = userRepo.findByUsername(username);
         u.get().setDiemTB(diemtb);
         userRepo.save(u.get());
-//      
+
         List<BaiThi> listBaiThi = baiThiRepo.findAll();
         model.addAttribute("listBaiThi", listBaiThi);
-        return "redirect:/listbaithi";
 
+        return "redirect:/listbaithi";
     }
 
     @RequestMapping("/thi/add")
@@ -143,7 +151,7 @@ public class ThiController {
         //authen
         HttpSession ss = request.getSession();
         if (ss.getAttribute("username") == null)
-            return new String("redirect:/login");
+            return "redirect:/login";
         //lấy bai thi
         model.addAttribute("baiThi", new BaiThiDTO());
         return "ThiNew";
@@ -179,6 +187,7 @@ public class ThiController {
                 cauHoiSet.add(cauHoi);
             }
         }
+
         baiThi.setListQuestion(cauHoiSet);
     }
 }

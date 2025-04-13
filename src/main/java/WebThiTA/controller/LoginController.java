@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/login")
@@ -32,9 +32,9 @@ public class LoginController {
     }
 
     public static String convertByteToHex(byte[] data) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        StringBuilder sb = new StringBuilder();
+        for (byte b : data) {
+            sb.append(String.format("%02x", b));
         }
         return sb.toString();
     }
@@ -50,16 +50,25 @@ public class LoginController {
     @PostMapping("/authen")
     public ModelAndView loginPost(ModelMap model, HttpServletRequest request) {
         String email = request.getParameter("email");
-        String password = getSHAHash(request.getParameter("password"));
-        List<User> users = userRepo.findAll();
-        for (User i : users) {
-            if (i.getUsername().equals(email) && i.getPassword().equals(password)) {
+        String password = request.getParameter("password");
+        String hashedPassword = getSHAHash(password);
+
+        Optional<User> userOptional = userRepo.findByUsername(email);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            System.out.println("DEBUG: Mật khẩu đã hash: " + hashedPassword);
+            System.out.println("DEBUG: Mật khẩu trong DB: " + user.getPassword());
+
+            if (user.getPassword().equals(hashedPassword)) {
                 HttpSession ss = request.getSession();
                 ss.setAttribute("username", email);
-                ss.setAttribute("role", i.getRole() + "");
+                ss.setAttribute("role", user.getRole() + "");
                 return new ModelAndView("redirect:/", model);
             }
         }
+
         model.addAttribute("message", "Sai tài khoản hoặc mật khẩu");
         return new ModelAndView("redirect:/login", model);
     }

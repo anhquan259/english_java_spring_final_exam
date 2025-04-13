@@ -1,7 +1,7 @@
 package WebThiTA.controller;
 
 import WebThiTA.constant.Translate;
-import WebThiTA.dto.languageDto;
+import WebThiTA.dto.LanguageDto;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class TranslateController {
     @PostMapping("/")
-    public static languageDto Translate(@RequestBody languageDto lang) {
+    public static LanguageDto Translate(@RequestBody LanguageDto lang) {
         System.out.println("json: " + " " + lang.getText());
         String tranT = null;
         try {
@@ -23,7 +23,7 @@ public class TranslateController {
     }
 
 //    @PostMapping("/")
-//    public static languageDto Translate(S) {
+//    public static LanguageDto Translate(S) {
 //        System.out.println("json: "+" "+ lang.getText());
 //        String tranT=null;
 //        try {

@@ -2,19 +2,19 @@ package WebThiTA.dto;
 
 import java.io.Serializable;
 
-public class languageDto implements Serializable {
+public class LanguageDto implements Serializable {
 
     private String langFR;
     private String langTO;
     private String text;
 
-    public languageDto(String langFR, String langTo, String text) {
+    public LanguageDto(String langFR, String langTo, String text) {
         this.langFR = langFR;
         this.text = text;
         this.langTO = langTo;
     }
 
-    public languageDto(String text) {
+    public LanguageDto(String text) {
         this.text = text;
     }
 
