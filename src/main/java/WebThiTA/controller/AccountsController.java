@@ -25,7 +25,7 @@ public class AccountsController {
     public String listUsers(Model model, HttpServletRequest request) {
         List<User> users = userRepo.findAll();
         model.addAttribute("users", users);
-        return checkLogin(request) ? "AccountList" : NOT_LOGIN; // Đường dẫn tới file Thymeleaf
+        return checkLogin(request) ? "AccountList" : NOT_LOGIN;
     }
 
     @GetMapping("/add")
@@ -50,7 +50,7 @@ public class AccountsController {
 
     private boolean checkLogin(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Integer roleObject = (Integer) session.getAttribute("role");
-        return roleObject != null && roleObject == 2;
+        String roleObject = (String) session.getAttribute("role");
+        return "2".equals(roleObject);
     }
 }
