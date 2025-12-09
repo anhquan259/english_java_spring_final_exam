@@ -1,6 +1,10 @@
 package WebThiTA.controller;
 
+import WebThiTA.dto.DiemDTO;
+import WebThiTA.model.BaiThi;
+import WebThiTA.model.Diem;
 import WebThiTA.model.User;
+import WebThiTA.reponsitory.DiemRepo;
 import WebThiTA.reponsitory.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -20,6 +25,9 @@ public class AccountsController {
     private final String NOT_LOGIN = "redirect:/login";
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    DiemRepo diemRepo;
 
     @GetMapping("")
     public String listUsers(Model model, HttpServletRequest request) {
@@ -48,9 +56,17 @@ public class AccountsController {
         return checkLogin(request) ? "redirect:/user" : NOT_LOGIN;
     }
 
+    @GetMapping("/point/{id}")
+    public String PointUser(@PathVariable Long id,Model model,  HttpServletRequest request) {
+        List<DiemDTO> diems = diemRepo.findByUserId(id);
+        model.addAttribute("DiemDTOS", diems);
+        return checkLogin(request) ? "Point" : NOT_LOGIN;
+    }
+
     private boolean checkLogin(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String roleObject = (String) session.getAttribute("role");
         return "2".equals(roleObject);
     }
+
 }

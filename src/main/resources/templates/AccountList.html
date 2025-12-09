@@ -82,6 +82,7 @@
             <td th:text="${user.role == 1 ? 'User' : 'Admin'}">Admin</td>
             <td th:text="${user.diemTB}">8.5</td>
             <td>
+                <a class="btn btn-primary btn-sm" th:href="@{/user/point/{id}(id=${user.userId})}">Chi tiết</a>
                 <a class="btn btn-primary btn-sm" th:href="@{/user/edit/{id}(id=${user.userId})}">Chỉnh sửa</a>
                 <a class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');"
                    th:href="@{/user/delete/{id}(id=${user.userId})}">Xóa</a>
