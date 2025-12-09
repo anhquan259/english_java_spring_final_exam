@@ -4,9 +4,9 @@ services:
     image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456a@
-      MYSQL_DATABASE: webta
-      MYSQL_USER: minhdat
-      MYSQL_PASSWORD: minhdat
+      MYSQL_ROOT_PASSWORD: quanna@251
+      MYSQL_DATABASE: eng-examination
+      MYSQL_USER: quanna
+      MYSQL_PASSWORD: quanna@251
     ports:
       - '3006:3306'
