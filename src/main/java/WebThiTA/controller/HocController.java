@@ -8,6 +8,8 @@ import WebThiTA.model.BaiHoc;
 import WebThiTA.model.Lesson;
 import WebThiTA.model.Level;
 import WebThiTA.reponsitory.BaiHocRepo;
+import WebThiTA.reponsitory.LessonRepo;
+import WebThiTA.reponsitory.LevelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,12 @@ public class HocController {
 
     @Autowired
     private BaiHocRepo baiHocRepo;
+
+    @Autowired
+    private LevelRepo levelRepo;
+
+    @Autowired
+    private LessonRepo lessonRepo;
 
     @RequestMapping("/khoahoc")
     public String baithi(Model model, HttpServletRequest request) {
@@ -64,6 +72,8 @@ public class HocController {
         //lấy bai thi
         List<BaiHoc> listBaiHoc = baiHocRepo.findAll();
         model.addAttribute("baiHoc", new BaiHoc());
+        model.addAttribute("allLevels", levelRepo.findAll());
+        model.addAttribute("allLessons", lessonRepo.findAll());
         return "BaiHocAdd";
     }
 

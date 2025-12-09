@@ -23,4 +23,36 @@ public class Level {
     @JsonManagedReference
     @ToString.Exclude
     private Set<BaiHoc> listBaiHoc;
+
+    public Long getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(Long levelId) {
+        this.levelId = levelId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<BaiHoc> getListBaiHoc() {
+        return listBaiHoc;
+    }
+
+    public void setListBaiHoc(Set<BaiHoc> listBaiHoc) {
+        this.listBaiHoc = listBaiHoc;
+    }
 }

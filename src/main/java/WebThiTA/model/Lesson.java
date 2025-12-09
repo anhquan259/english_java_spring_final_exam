@@ -24,4 +24,36 @@ public class Lesson {
     @JsonManagedReference
     @ToString.Exclude
     private Set<BaiHoc> listBaiHoc;
+
+    public Long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(Long lessonId) {
+        this.lessonId = lessonId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<BaiHoc> getListBaiHoc() {
+        return listBaiHoc;
+    }
+
+    public void setListBaiHoc(Set<BaiHoc> listBaiHoc) {
+        this.listBaiHoc = listBaiHoc;
+    }
 }
