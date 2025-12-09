@@ -22,6 +22,8 @@ public class BaiThi {
     private String examName;
     @Column(columnDefinition = "varchar(1000)")
     private String content;
+    @Column(name ="exam_time")
+    private int examTime;
 
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

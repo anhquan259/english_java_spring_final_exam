@@ -173,6 +173,7 @@ public class ThiController {
     private void convertBaiThiDTOToBaiThi(BaiThiDTO baiThiDTO, BaiThi baiThi) {
         baiThi.setContent(baiThiDTO.getContent());
         baiThi.setExamName(baiThiDTO.getExamName());
+        baiThi.setExamTime(baiThiDTO.getExamTime());
         Set<CauHoi> cauHoiSet = new HashSet<>();
         if (baiThiDTO.getListCauHoi() != null || baiThiDTO.getListCauHoi().size() > 0) {
             for (CauHoiDTO cauHoiDTO : baiThiDTO.getListCauHoi()) {

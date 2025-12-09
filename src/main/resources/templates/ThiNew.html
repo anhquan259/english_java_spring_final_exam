@@ -57,6 +57,12 @@
                       required rows="5" th:field="*{content}"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="content">Thời gian tối đa</label>
+            <input class="form-control" id="examTime" name="examTime" placeholder="Tính theo phút"
+                      required rows="5" th:field="*{examTime}" type="number"></input>
+        </div>
+
         <h3>Thêm Câu Hỏi</h3>
         <div id="question-container">
             <!-- Câu hỏi sẽ được thêm vào đây -->

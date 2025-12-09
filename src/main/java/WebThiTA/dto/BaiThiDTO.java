@@ -7,6 +7,7 @@ public class BaiThiDTO {
     private String examName;
     private int numberOfQuestions;
     private String content;
+    private int examTime;// minutes
     private ArrayList<CauHoiDTO> listCauHoi;
 
     public BaiThiDTO() {
@@ -53,5 +54,11 @@ public class BaiThiDTO {
         this.content = content;
     }
 
+    public int getExamTime() {
+        return examTime;
+    }
 
+    public void setExamTime(int examTime) {
+        this.examTime = examTime;
+    }
 }
