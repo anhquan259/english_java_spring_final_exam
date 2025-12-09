@@ -54,20 +54,142 @@
 <!-- end header section -->
 
 <div id="resutlTest">
-    <div class="container-fluid fill " id="content">
-        <h2 class="ntitle">Choose a grammar lesson<a th:href="@{'/khoahoc/add'}" th:if="${session.role == '2'}"> +</a>
+    <div class="container-fluid fill" id="content" style="max-width: 900px; padding-top: 30px;">
+        <h2 class="ntitle mb-4 border-bottom pb-2">
+            📚 Choose a grammar lesson
+            <a th:href="@{'/khoahoc/add'}" th:if="${session.role == '2'}" class="btn btn-sm btn-primary ms-3"> + Add</a>
         </h2>
-        <!--Nội dung bài test -->
-        <div class="nlistbaithi">
-            <div th:each=" baiHoc: ${listBaiHoc}" th:object="${baiHoc}">
-                <!-- show part5 -->
-                <a th:href="@{'/khoahoc/' + *{lessonId}}">
-                    <b class="nkt">[[*{title}]] </b>
-                </a>
+
+        <div th:each="level : ${allLevels}" class="level-accordion-item mb-4 shadow-sm">
+            <div class="level-header p-3" th:data-target="'#level' + ${level.levelId}">
+                <h3 class="d-flex justify-content-between align-items-center mb-0">
+                    <span class="text-primary fw-bold">[[${level.name}]]</span>
+                    <span class="symbol text-primary fw-bold fs-5">+</span>
+                </h3>
+            </div>
+
+            <div class="level-content collapse" th:id="'level' + ${level.levelId}">
+                <div class="p-3 bg-light border-top ms-3">
+
+                    <div th:each="lesson : ${level.lessons}" class="lesson-accordion-item mb-2 border rounded bg-white">
+                        <div class="lesson-header p-2" th:data-target="'#lesson' + ${lesson.lessonId}">
+                            <h4 class="d-flex justify-content-between align-items-center mb-0">
+                                <span class="text-secondary ms-2">[[${lesson.title}]]</span>
+                                <span class="symbol text-secondary fw-bold me-2">+</span>
+                            </h4>
+                        </div>
+
+                        <div class="lesson-content collapse" th:id="'lesson' + ${lesson.lessonId}">
+                            <div class="p-2 border-top ms-4">
+                                <div th:each="unit : ${lesson.baiHocs}" class="unit-item py-1">
+                                    <a th:href="@{'/khoahoc/' + ${unit.unitId}}" class="text-decoration-none d-block unit-link">
+                                        <i class="fa fa-caret-right me-2 text-success"></i>
+                                        <b class="nkt">[[${unit.title}]]</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- JS toggle + / - -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Áp dụng cho cả level-header và lesson-header
+        document.querySelectorAll(".level-header, .lesson-header").forEach(header => {
+            header.addEventListener("click", () => {
+                const targetId = header.getAttribute("data-target");
+                const targetElement = document.querySelector(targetId);
+                const symbol = header.querySelector(".symbol");
+
+                // Toggle class 'show' của Bootstrap để mở/đóng
+                targetElement.classList.toggle("show");
+
+                // Cập nhật biểu tượng (+/-)
+                if (targetElement.classList.contains("show")) {
+                    symbol.textContent = "−"; // Ký tự gạch ngang dài hơn
+                } else {
+                    symbol.textContent = "+";
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Tùy chỉnh chung */
+    #content {
+        background-color: #ffffff; /* Nền trắng cho nội dung */
+    }
+
+    /* Cấp độ 1: Level */
+    .level-accordion-item {
+        border: 1px solid #dee2e6;
+        border-radius: .25rem;
+        overflow: hidden; /* Quan trọng để border-radius hoạt động với shadow */
+    }
+
+    .level-header {
+        background-color: #e9ecef; /* Nền xám nhạt */
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .level-header:hover {
+        background-color: #ced4da; /* Thay đổi màu khi di chuột */
+    }
+
+    /* Cấp độ 2: Lesson */
+    .lesson-accordion-item {
+        border: 1px solid #adb5bd;
+        margin-bottom: 8px !important;
+    }
+
+    .lesson-header {
+        background-color: #f8f9fa; /* Nền trắng tinh cho Lesson */
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .lesson-header:hover {
+        background-color: #e9ecef; /* Thay đổi màu khi di chuột */
+    }
+
+    /* Cấp độ 3: Unit (Link) */
+    .unit-item {
+        padding-left: 10px;
+        border-bottom: 1px dotted #e9ecef;
+    }
+
+    .unit-link {
+        color: #495057; /* Màu chữ đậm vừa phải */
+        transition: color 0.2s;
+    }
+
+    .unit-link:hover {
+        color: #007bff; /* Màu xanh khi hover */
+        font-weight: bold; /* Thêm độ đậm khi hover */
+    }
+
+    /* Biểu tượng Mở/Đóng */
+    .level-header .symbol, .lesson-header .symbol {
+        transition: transform 0.3s;
+    }
+
+    .collapse.show + .level-header .symbol,
+    .collapse.show + .lesson-header .symbol {
+        /* Khi nội dung mở, biểu tượng + chuyển thành - (đã xử lý trong JS) */
+        /* Nếu muốn thêm xoay: transform: rotate(45deg); */
+    }
+</style>
+
+
 
 <!-- footer section -->
 

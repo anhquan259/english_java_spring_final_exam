@@ -1,7 +1,9 @@
 package WebThiTA.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -11,9 +13,9 @@ import javax.persistence.*;
 public class BaiHoc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "lesson_id")
+    @Column(name = "unit_id")
     @EqualsAndHashCode.Include
-    private Long lessonId;
+    private Long unitId;
     @Column(nullable = false)
     private String title;
     @Column(name = "video")
@@ -35,17 +37,29 @@ public class BaiHoc {
     @Column(columnDefinition = "varchar(1000)")
     private String content4;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lesson_id", nullable = false, referencedColumnName = "lesson_id")
+    @JsonBackReference
+    @ToString.Exclude
+    private Lesson lesson;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "level_id", nullable = false, referencedColumnName = "level_id")
+    @JsonBackReference
+    @ToString.Exclude
+    private Level level;
+
 
     public BaiHoc() {
         super();
     }
 
-    public Long getLessonId() {
-        return lessonId;
+    public Long getUnit() {
+        return unitId;
     }
 
-    public void setLessonId(Long lessonId) {
-        this.lessonId = lessonId;
+    public void setUnit(Long unitId) {
+        this.unitId = unitId;
     }
 
     public String getTitle() {
