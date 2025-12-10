@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <!-- Mobile Metas -->
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <!-- Site Metas -->
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    <title>Account</title>
+
+    <!-- bootstrap core css -->
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <!-- progress barstle -->
+    <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
+    <!-- font wesome stylesheet -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
+    <!-- Custom taskbar for this template -->
+    <link href="/css/taskbar.css" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="/css/responsive.css" rel="stylesheet"/>
+    <link href="/css/Thi.css" rel="stylesheet"/>
+    <link href="/css/BaiHoc.css" rel="stylesheet"/>
+
+    <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
+
+    <script
+            src="/js/jquery-1.js"></script>
+    <script
+            src="/js/baiTestReading.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"
+            type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+
+<body class="sub_page">
+<div class="top_container ">
+    <!-- header section strats -->
+    <header th:replace="fragments/header :: header"></header>
+</div>
+<!-- end header section -->
+
+<div class="container mt-5">
+    <div class="container mt-5" style="max-width: 600px; padding-bottom: 100px;">
+        <h2 class="text-center mb-4" style="color: #333; font-weight: 600;">📚 Thêm Lesson Mới</h2>
+
+        <form method="post" th:action="@{/add-lesson}" th:object="${lessonDTO}">
+
+
+            <div class="form-group mb-4">
+                <label for="name" class="form-label fw-bold">Tên Lesson</label>
+                <input class="form-control" id="name" name="name"
+                       placeholder="Ví dụ: Passive Voice" required
+                       th:field="*{name}" type="text">
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger mt-1"></div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="description" class="form-label fw-bold">Mô tả (Tùy chọn)</label>
+                <textarea class="form-control" id="description" name="description"
+                          placeholder="Mô tả ngắn gọn về Lesson (Cấu trúc, mục tiêu...)" rows="3" th:field="*{description}"></textarea>
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger mt-1"></div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary btn-lg" type="submit">Tạo Lesson Master Data</button>
+                <a th:href="@{/khoahoc/add}" class="btn btn-outline-secondary">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- footer section -->
+
+<script src="/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
+
+</body>
+</html>

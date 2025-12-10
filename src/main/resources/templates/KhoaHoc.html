@@ -2,93 +2,87 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- Basic -->
     <meta charset="utf-8"/>
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <!-- Mobile Metas -->
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
-    <!-- Site Metas -->
-    <meta content="" name="keywords"/>
-    <meta content="" name="description"/>
-    <meta content="" name="author"/>
-
     <title>English Examination | Khoá học</title>
 
-    <!-- bootstrap core css -->
+    <!-- Các link CSS của bạn (giữ nguyên) -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <!-- progress barstle -->
     <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
-    <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,600&display=swap" rel="stylesheet">
-    <!-- font wesome stylesheet -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="/css/style.css" rel="stylesheet"/>
-    <!-- Custom taskbar for this template -->
     <link href="/css/taskbar.css" rel="stylesheet"/>
-    <!-- responsive style -->
     <link href="/css/responsive.css" rel="stylesheet"/>
     <link href="/css/Thi.css" rel="stylesheet"/>
     <link href="/css/ListBaiHoc.css" rel="stylesheet"/>
     <link href="/css/css-circular-prog-bar.css" rel="stylesheet">
 
-    <script
-            src="/js/jquery-1.js"></script>
-    <script
-            src="/js/baiTestReading.js"></script>
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"
-            type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-        });
-    </script>
+    <script src="/js/jquery-1.js"></script>
+    <script src="/js/baiTestReading.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
 </head>
 
 <body class="sub_page">
-<div class="top_container ">
-    <!-- header section strats -->
+<div class="top_container">
     <header th:replace="fragments/header :: header"></header>
 </div>
-<!-- end header section -->
 
-<div id="resutlTest">
-    <div class="container-fluid fill" id="content" style="max-width: 900px; padding-top: 30px;">
-        <h2 class="ntitle mb-4 border-bottom pb-2">
-            📚 Choose a grammar lesson
-            <a th:href="@{'/khoahoc/add'}" th:if="${session.role == '2'}" class="btn btn-sm btn-primary ms-3"> + Add</a>
+<div class="container-fluid" style="max-width: 900px; padding-top: 50px; padding-bottom: 100px;">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="mb-0" style="color: #333; font-weight: 600;">
+            <img src="/images/book-icon.png" alt="" style="width: 40px; margin-right: 15px; margin-bottom: 8px;">
+            Choose a grammar lesson
         </h2>
+        <a th:href="@{'/khoahoc/add'}" th:if="${session.role == '2'}"
+           class="btn btn-primary rounded-pill shadow-sm" style="padding: 8px 20px; font-size: 15px;">
+            + Add Unit
+        </a>
+    </div>
 
-        <div th:each="level : ${allLevels}" class="level-accordion-item mb-4 shadow-sm">
-            <div class="level-header p-3" th:data-target="'#level' + ${level.levelId}">
-                <h3 class="d-flex justify-content-between align-items-center mb-0">
-                    <span class="text-primary fw-bold">[[${level.name}]]</span>
-                    <span class="symbol text-primary fw-bold fs-5">+</span>
-                </h3>
+    <div th:each="level : ${allLevels}" class="mb-4">
+        <div class="bg-light rounded shadow-sm overflow-hidden">
+            <div class="d-flex justify-content-between align-items-center p-3 level-header-container">
+                <div class="d-flex align-items-center flex-grow-1 cursor-pointer level-header"
+                     th:data-target="'#level' + ${level.levelId}">
+                    <h3 class="mb-0 fw-bold text-primary">[[${level.name}]]</h3>
+                    <span class="symbol text-primary fw-bold fs-4 ms-3">+</span>
+                </div>
+
+                <a th:href="@{'/add-lesson?levelId=' + ${level.levelId}}" th:if="${session.role == '2'}"
+                   class="btn btn-sm btn-success rounded-pill ms-3" style="font-size: 14px;">
+                    + Add Lesson
+                </a>
             </div>
 
-            <div class="level-content collapse" th:id="'level' + ${level.levelId}">
-                <div class="p-3 bg-light border-top ms-3">
-
-                    <div th:each="lesson : ${level.lessons}" class="lesson-accordion-item mb-2 border rounded bg-white">
-
+            <div class="collapse" th:id="'level' + ${level.levelId}">
+                <div class="p-3 pt-0">
+                    <div th:each="lesson : ${level.lessons}" class="mb-3">
                         <th:block th:with="uniqueLessonId = ${'lesson-' + level.levelId + '-' + lesson.lessonId}">
+                            <div class="bg-white rounded border shadow-sm">
+                                <div class="d-flex justify-content-between align-items-center p-3 lesson-header-container">
+                                    <div class="d-flex align-items-center flex-grow-1 cursor-pointer lesson-header"
+                                         th:data-target="'#' + ${uniqueLessonId}">
+                                        <h5 class="mb-0 text-secondary">[[${lesson.title}]]</h5>
+                                        <span class="symbol text-secondary fw-bold ms-3">+</span>
+                                    </div>
 
-                            <div class="lesson-header p-2" th:data-target="'#' + ${uniqueLessonId}">
-                                <h4 class="d-flex justify-content-between align-items-center mb-0">
-                                    <span class="text-secondary ms-2">[[${lesson.title}]]</span>
-                                    <span class="symbol text-secondary fw-bold me-2">+</span>
-                                </h4>
-                            </div>
+                                    <a th:href="@{'/khoahoc/add?lessonId=' + ${lesson.lessonId}}" th:if="${session.role == '2'}"
+                                       class="btn btn-sm btn-info rounded-pill ms-3" style="font-size: 14px;">
+                                        + Add Unit
+                                    </a>
+                                </div>
 
-                            <div class="lesson-content collapse" th:id="${uniqueLessonId}">
-                                <div class="p-2 border-top ms-4">
-                                    <div th:each="unit : ${lesson.baiHocs}" class="unit-item py-1">
-                                        <a th:href="@{'/khoahoc/' + ${unit.unitId}}" class="text-decoration-none d-block unit-link">
-                                            <i class="fa fa-caret-right me-2 text-success"></i>
-                                            <b class="nkt">[[${unit.title}]]</b>
-                                        </a>
+                                <div class="collapse" th:id="${uniqueLessonId}">
+                                    <div class="pt-2 px-4 pb-3">
+                                        <div th:each="unit : ${lesson.baiHocs}" class="py-2">
+                                            <a th:href="@{'/khoahoc/' + ${unit.unitId}}"
+                                               class="text-decoration-none d-flex align-items-center unit-link">
+                                                <i class="fa fa-play-circle text-success me-2"></i>
+                                                <span class="text-dark">[[${unit.title}]]</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,23 +94,28 @@
     </div>
 </div>
 
-<!-- JS toggle + / - -->
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Áp dụng cho cả level-header và lesson-header
+        // Chỉ gắn sự kiện click cho phần tử "level-header" và "lesson-header" bên trong để tránh click vào nút "Add"
         document.querySelectorAll(".level-header, .lesson-header").forEach(header => {
-            header.addEventListener("click", () => {
+            header.addEventListener("click", (event) => {
+                // Đảm bảo click không xuất phát từ nút Add
+                if (event.target.closest('a') !== null) {
+                    return;
+                }
+
                 const targetId = header.getAttribute("data-target");
                 const targetElement = document.querySelector(targetId);
                 const symbol = header.querySelector(".symbol");
 
-                // Toggle class 'show' của Bootstrap để mở/đóng
+                // Toggle collapse
+                const isCollapsed = targetElement.classList.contains("show");
+
+                // Đóng tất cả các collapse khác (cùng cấp) nếu muốn, hoặc chỉ toggle
                 targetElement.classList.toggle("show");
 
-                // Cập nhật biểu tượng (+/-)
                 if (targetElement.classList.contains("show")) {
-                    symbol.textContent = "−"; // Ký tự gạch ngang dài hơn
+                    symbol.textContent = "−";
                 } else {
                     symbol.textContent = "+";
                 }
@@ -126,79 +125,29 @@
 </script>
 
 <style>
-    /* Tùy chỉnh chung */
-    #content {
-        background-color: #ffffff; /* Nền trắng cho nội dung */
-    }
+    /* ... (Giữ nguyên các style cũ của bạn) ... */
 
-    /* Cấp độ 1: Level */
-    .level-accordion-item {
-        border: 1px solid #dee2e6;
-        border-radius: .25rem;
-        overflow: hidden; /* Quan trọng để border-radius hoạt động với shadow */
-    }
+    .cursor-pointer { cursor: pointer; }
+    .level-header:hover { background-color: #f0f0f0 !important; }
+    .lesson-header:hover { background-color: #f8f9fa !important; }
+    .unit-link:hover { color: #007bff !important; }
+    .unit-link:hover span { font-weight: 500; }
+    .symbol { transition: all 0.2s; width: 30px; text-align: center; }
 
-    .level-header {
-        background-color: #e9ecef; /* Nền xám nhạt */
-        cursor: pointer;
-        transition: background-color 0.3s;
-        border-bottom: 1px solid #dee2e6;
+    /* Điều chỉnh bố cục để nút Add Lesson/Unit nằm ngang hàng */
+    .level-header-container, .lesson-header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-
-    .level-header:hover {
-        background-color: #ced4da; /* Thay đổi màu khi di chuột */
-    }
-
-    /* Cấp độ 2: Lesson */
-    .lesson-accordion-item {
-        border: 1px solid #adb5bd;
-        margin-bottom: 8px !important;
-    }
-
-    .lesson-header {
-        background-color: #f8f9fa; /* Nền trắng tinh cho Lesson */
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .lesson-header:hover {
-        background-color: #e9ecef; /* Thay đổi màu khi di chuột */
-    }
-
-    /* Cấp độ 3: Unit (Link) */
-    .unit-item {
-        padding-left: 10px;
-        border-bottom: 1px dotted #e9ecef;
-    }
-
-    .unit-link {
-        color: #495057; /* Màu chữ đậm vừa phải */
-        transition: color 0.2s;
-    }
-
-    .unit-link:hover {
-        color: #007bff; /* Màu xanh khi hover */
-        font-weight: bold; /* Thêm độ đậm khi hover */
-    }
-
-    /* Biểu tượng Mở/Đóng */
-    .level-header .symbol, .lesson-header .symbol {
-        transition: transform 0.3s;
-    }
-
-    .collapse.show + .level-header .symbol,
-    .collapse.show + .lesson-header .symbol {
-        /* Khi nội dung mở, biểu tượng + chuyển thành - (đã xử lý trong JS) */
-        /* Nếu muốn thêm xoay: transform: rotate(45deg); */
+    .level-header, .lesson-header {
+        /* Đảm bảo phần tiêu đề chiếm không gian còn lại */
+        flex-grow: 1;
+        padding-right: 15px; /* Thêm khoảng cách nếu cần */
     }
 </style>
 
-
-
-<!-- footer section -->
-
 <script src="/js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
-
 </body>
 </html>
