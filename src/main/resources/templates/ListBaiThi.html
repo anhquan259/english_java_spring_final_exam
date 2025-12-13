@@ -66,6 +66,12 @@
                         <b>[[*{examName}]] </b>
                     </p>
                 </a>
+                <a th:href="@{'/thi/edit/' + *{examId}}"
+                   th:if="${session.role == '2'}"
+                   class="btn btn-sm btn-warning"
+                   style="margin-left: 10px;">
+                    Edit
+                </a>
             </div>
         </div>
     </div>
