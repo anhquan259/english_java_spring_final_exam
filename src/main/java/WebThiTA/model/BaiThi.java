@@ -31,7 +31,7 @@ public class BaiThi {
     @ToString.Exclude
     private Set<Diem> listDiem;
 
-    @OneToMany(mappedBy = "exam", cascade = { CascadeType.MERGE, CascadeType.REMOVE},
+    @OneToMany(mappedBy = "exam", cascade = { CascadeType.ALL},
             orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     @ToString.Exclude

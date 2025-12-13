@@ -147,32 +147,38 @@
             </div>
 
             <div class="form-group">
+                <label>Đáp án A</label>
                 <input type="text" class="form-control"
-                       name="listCauHoi[${questionIndex}].option1" placeholder="Đáp án A" required>
+                       name="listCauHoi[${questionIndex}].option1" placeholder="" required>
             </div>
 
             <div class="form-group">
+                <label>Đáp án B</label>
                 <input type="text" class="form-control"
-                       name="listCauHoi[${questionIndex}].option2" placeholder="Đáp án B" required>
+                       name="listCauHoi[${questionIndex}].option2" placeholder="" required>
             </div>
 
             <div class="form-group">
+                <label>Đáp án C</label>
                 <input type="text" class="form-control"
-                       name="listCauHoi[${questionIndex}].option3" placeholder="Đáp án C" required>
+                       name="listCauHoi[${questionIndex}].option3" placeholder="" required>
             </div>
 
             <div class="form-group">
+                <label>Đáp án D</label>
                 <input type="text" class="form-control"
-                       name="listCauHoi[${questionIndex}].option4" placeholder="Đáp án D" required>
+                       name="listCauHoi[${questionIndex}].option4" placeholder="" required>
             </div>
-
-            <select class="form-control"
+            <div>
+                <label>Đáp án đúng</label>
+                <select class="form-control"
                     name="listCauHoi[${questionIndex}].correctanswer">
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
             </select>
+            </div>
 
             <button type="button"
                     class="btn btn-danger remove-question-btn"

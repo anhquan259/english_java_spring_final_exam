@@ -12,6 +12,7 @@ import WebThiTA.reponsitory.DiemRepo;
 import WebThiTA.reponsitory.UserRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -142,7 +143,7 @@ public class ThiController {
         u.get().setDiemTB(diemtb);
         userRepo.save(u.get());
 
-        List<BaiThi> listBaiThi = baiThiRepo.findAll();
+        List<BaiThi> listBaiThi = baiThiRepo.findAll(Sort.by(Sort.Direction.ASC, "examId"));
         model.addAttribute("listBaiThi", listBaiThi);
 
         return "redirect:/listbaithi";
@@ -173,10 +174,9 @@ public class ThiController {
         return "ThiEdit";
     }
     @PostMapping("/thi/edit-exam/{id}")
+    @Transactional
     public String updateExam(@PathVariable Long id,@ModelAttribute BaiThiDTO baiThiDTO) {
-        BaiThi entity = toEntity(baiThiDTO);
-        entity.setExamId(id);
-        baiThiRepo.save(entity);
+        updateBaiThi(baiThiDTO,id);
         return "redirect:/listbaithi";
     }
 
@@ -236,40 +236,63 @@ public class ThiController {
                 qdto.setIndex(index++);
                 list.add(qdto);
             }
-
+            list.sort(Comparator.comparing(CauHoiDTO::getQuestionId,
+                    Comparator.nullsLast(Long::compareTo)));
             dto.setListCauHoi(list);
             dto.setNumberOfQuestions(list.size());
         }
         return dto;
     }
 
-    public BaiThi toEntity(BaiThiDTO dto) {
-        BaiThi entity = new BaiThi();
-        entity.setExamId(dto.getExamId());
-        entity.setExamName(dto.getExamName());
-        entity.setContent(dto.getContent());
-        entity.setExamTime(dto.getExamTime());
+    @Transactional
+    public void updateBaiThi(BaiThiDTO dto, long id) {
 
-        Set<CauHoi> questions = new HashSet<>();
+        BaiThi baiThi = baiThiRepo.findById(id)
+                .orElseThrow();
 
-        if (dto.getListCauHoi() != null) {
-            for (CauHoiDTO qdto : dto.getListCauHoi()) {
+        // 1️⃣ Update info bài thi
+        baiThi.setExamName(dto.getExamName());
+
+        // 2️⃣ Map id câu hỏi gửi lên
+        Set<Long> incomingIds = dto.getListCauHoi().stream()
+                .map(CauHoiDTO::getQuestionId)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+        // 3️⃣ XÓA câu hỏi bị remove trên UI
+        baiThi.getListQuestion().removeIf(q ->
+                q.getQuestionId() != null && !incomingIds.contains(q.getQuestionId())
+        );
+
+        // 4️⃣ UPDATE / ADD
+        for (CauHoiDTO qDto : dto.getListCauHoi()) {
+            if(qDto.getQuestionId() == null && qDto.getQuestion() == null) continue;
+            if (qDto.getQuestionId() != null) {
+                // update câu hỏi cũ
+                baiThi.getListQuestion().stream()
+                        .filter(q -> q.getQuestionId().equals(qDto.getQuestionId()))
+                        .findFirst()
+                        .ifPresent(q -> {
+                            setQuestion(baiThi, qDto, q);
+                        });
+            } else {
+                // thêm câu hỏi mới
                 CauHoi q = new CauHoi();
-                q.setQuestionId(qdto.getQuestionId()); // null = thêm mới
-                q.setQuestion(qdto.getQuestion());
-                q.setOption1(qdto.getOption1());
-                q.setOption2(qdto.getOption2());
-                q.setOption3(qdto.getOption3());
-                q.setOption4(qdto.getOption4());
-                q.setCorrectanswer(qdto.getCorrectanswer());
-
-                q.setExam(entity); // ⭐ QUAN TRỌNG
-                questions.add(q);
+                setQuestion(baiThi, qDto, q);
+                baiThi.getListQuestion().add(q);
             }
         }
 
-        entity.setListQuestion(questions);
-        return entity;
+        baiThiRepo.save(baiThi);
     }
 
+    private void setQuestion(BaiThi baiThi, CauHoiDTO qDto, CauHoi q) {
+        q.setQuestion(qDto.getQuestion());
+        q.setCorrectanswer(qDto.getCorrectanswer());
+        q.setOption1(qDto.getOption1());
+        q.setOption2(qDto.getOption2());
+        q.setOption3(qDto.getOption3());
+        q.setOption4(qDto.getOption4());
+        q.setExam(baiThi);
+    }
 }
